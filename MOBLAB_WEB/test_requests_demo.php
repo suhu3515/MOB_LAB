@@ -115,17 +115,17 @@
                                 </a>
                                 <ul class="nav nav-children">
                                     <li>
-                                        <a href="tests_list_demo.php">
+                                        <a href="tests_list.php">
                                             Tests
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="subtest_list_demo.php">
+                                        <a href="subtests_list.php">
                                             SubTests
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="test_ins_demo.php">
+                                        <a href="test_ins.php">
                                             Test Instructions
                                         </a>
                                     </li>

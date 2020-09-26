@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Pending Collection | MOBLAB</title>
+    <title>Tester Details | MOBLAB</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -49,7 +49,7 @@
     <header class="header">
         <div class="logo-container">
             <a href="index.html" class="logo">
-                <img src="assets/images/new_logo.png" alt="Porto Admin" />
+                <img src="assets/images/new_logo.png" alt="ABC LAB" />
             </a>
             <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
                 <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -101,7 +101,7 @@
                                             Collection List
                                         </a>
                                     </li>
-                                    <li class="nav nav-active">
+                                    <li>
                                         <a href="pending_collection_demo.php">
                                             Pending Collection
                                         </a>
@@ -203,82 +203,82 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Pending Collection</h2>
+                <h2>Add Tester</h2>
 
             </header>
 
             <!-- start: page -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <div class="panel-actions">
+                                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                                <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                            </div>
+
+                            <h2 class="panel-title">Tester Details</h2>
+                        </header>
+                        <form class="form-horizontal form-bordered" method="post">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <?php
+                                    $tid = $_GET['tid'];
+                                    $server_name = "localhost";
+                                    $user_name = "root";
+                                    $password = "";
+                                    $database = "moblab";
+
+                                    $conn = new mysqli($server_name, $user_name, $password, $database);
+
+                                    $tester = "select test_name, specimen, instr from test where test_id='$tid'";
+                                    $res = $conn->query($tester);
+                                    $test_data = $res->fetch_row();
+                                    $test_name = $test_data[0];
+                                    $test_spec = $test_data[1];
+                                    $test_instr = $test_data[2];
+                                    ?>
+                                    <label class='col-md-3 control-label' for='testername'>Test Name</label>
+                                    <?php
+                                    echo "<label class='col-md-3 control-label'>$test_name</label>";
+                                    ?>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Specimen</label>
+                                    <?php
+                                    echo "<label class='col-md-3 control-label'>$test_spec</label>";
+                                    ?>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Instructions</label>
+                                    <?php
+                                    echo "<div class='col-md-6'>";
+                                    echo "<textarea class='form-control' rows='6' id='instructions' name='instructions' data-plugin-textarea-autosize readonly='readonly'>$test_instr</textarea>";
+                                    echo "</div>";
+                                    ?>
+                                </div>
+
+                            </div>
+                        </form>
+                        <footer class="panel-footer">
+                            <div class="row">
+                                <div class="col-sm-9 col-sm-offset-6">
+                                    <a href="test_ins.php">
+                                        <button class="btn btn-primary" name="tester_list">Go back <i class="fa fa-arrow-left"></i> </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </footer>
+                    </section>
+                </div>
+            </div>
+
             <!-- end: page -->
         </section>
     </div>
-
-    <aside id="sidebar-right" class="sidebar-right">
-        <div class="nano">
-            <div class="nano-content">
-                <a href="#" class="mobile-close visible-xs">
-                    Collapse <i class="fa fa-chevron-right"></i>
-                </a>
-
-                <div class="sidebar-right-wrapper">
-
-                    <div class="sidebar-widget widget-calendar">
-                        <h6>Upcoming Tasks</h6>
-                        <div data-plugin-datepicker data-plugin-skin="dark" ></div>
-
-                        <ul>
-                            <li>
-                                <time datetime="2016-04-19T00:00+00:00">04/19/2016</time>
-                                <span>Company Meeting</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-widget widget-friends">
-                        <h6>Friends</h6>
-                        <ul>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </aside>
 
 </section>
 
@@ -332,6 +332,3 @@
 
 </body>
 </html>
-</html>
-
-<?php

@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Pending Collection | MOBLAB</title>
+    <title>Add Test Instructions | MOBLAB</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -49,7 +49,7 @@
     <header class="header">
         <div class="logo-container">
             <a href="index.html" class="logo">
-                <img src="assets/images/new_logo.png" alt="Porto Admin" />
+                <img src="assets/images/new_logo.png" alt="ABC LAB" />
             </a>
             <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
                 <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -101,7 +101,7 @@
                                             Collection List
                                         </a>
                                     </li>
-                                    <li class="nav nav-active">
+                                    <li>
                                         <a href="pending_collection_demo.php">
                                             Pending Collection
                                         </a>
@@ -124,7 +124,7 @@
                                             SubTests
                                         </a>
                                     </li>
-                                    <li>
+                                    <li class="nav nav-active">
                                         <a href="test_ins.php">
                                             Test Instructions
                                         </a>
@@ -203,82 +203,74 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Pending Collection</h2>
+                <h2>Add Test Instructions</h2>
 
             </header>
 
             <!-- start: page -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <div class="panel-actions">
+                                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                                <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                            </div>
+
+                            <h2 class="panel-title">Add Test Instructions</h2>
+                        </header>
+                        <form class="form-horizontal form-bordered" method="post">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="testname">Test Name <span class="required">*</span></label>
+                                    <div class="col-md-6">
+                                        <?php
+                                        $server_name = "localhost";
+                                        $user_name = "root";
+                                        $password = "";
+                                        $database = "moblab";
+
+                                        $conn = new mysqli($server_name, $user_name, $password, $database);
+                                        $sel_tests = "select test_id, test_name from test";
+                                        $resu = $conn ->query($sel_tests);
+                                        ?>
+                                        <select class="form-control mb-md" name="testname" id="testname" required>
+                                            <option value="">Select Test</option>
+                                            <?php
+                                            while ( $row = $resu->fetch_array())
+                                            {
+                                                echo "<option value='$row[0]'>$row[1]</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="instructions">Instructions <span class="required">*</span></label>
+                                    <div class="col-md-6">
+                                        <textarea class="form-control" rows="3" id="instructions"  name="instructions" data-plugin-textarea-autosize></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <footer class="panel-footer">
+                                <div class="row">
+                                    <div class="col-sm-9 col-sm-offset-3">
+                                        <input class="btn btn-primary" type="submit" name="add_instr">
+                                        <button type="reset" class="btn btn-default">Reset</button>
+                                    </div>
+                                </div>
+                            </footer>
+                        </form>
+                    </section>
+                </div>
+            </div>
+
             <!-- end: page -->
         </section>
     </div>
-
-    <aside id="sidebar-right" class="sidebar-right">
-        <div class="nano">
-            <div class="nano-content">
-                <a href="#" class="mobile-close visible-xs">
-                    Collapse <i class="fa fa-chevron-right"></i>
-                </a>
-
-                <div class="sidebar-right-wrapper">
-
-                    <div class="sidebar-widget widget-calendar">
-                        <h6>Upcoming Tasks</h6>
-                        <div data-plugin-datepicker data-plugin-skin="dark" ></div>
-
-                        <ul>
-                            <li>
-                                <time datetime="2016-04-19T00:00+00:00">04/19/2016</time>
-                                <span>Company Meeting</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-widget widget-friends">
-                        <h6>Friends</h6>
-                        <ul>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </aside>
 
 </section>
 
@@ -332,6 +324,24 @@
 
 </body>
 </html>
-</html>
 
 <?php
+if (isset($_POST['add_instr']))
+{
+    $test_id = $_POST['testname'];
+    $instruction = $_POST['instructions'];
+    $new_tinstr = "UPDATE test SET instr='$instruction' where test_id='$test_id'";
+        $reg = mysqli_query($conn, $new_tinstr);
+
+        if($reg)
+        {
+            echo "<script>alert('Instruction Updated Successfully...')</script>";
+            echo "<script>window.location='test_ins.php'</script>";
+        }
+        else
+        {
+            echo "<script>alert('Error in updating instructions')</script>";
+            $error_number = $conn->error;
+            echo $error_number;
+        }
+}

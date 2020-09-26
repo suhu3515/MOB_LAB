@@ -44,12 +44,35 @@ if (isset($_GET['apicall']))
                         $stmt = $conn->prepare("SELECT id, user_name, dob, hname, place , pin, mobile, email from users where mobile=?" );
                         $stmt->bind_param("i",$user_mobile);
                         $stmt->execute();
-                        $stmt->bind_result($user_id,$user_name, $user_dob, $user_hname, )
-                    }
+                        $stmt->bind_result($user_id,$user_name, $user_dob, $user_hname,  $user_place, $user_pin, $user_mobile, $user_email);
+                        $stmt->fetch();
 
+                        $user = array
+                        (
+                            'user_id'=>$user_id,
+                            'user_name'=>$user_name,
+                            'user_dob'=>$user_dob,
+                            'user_hname'=>$user_hname,
+                            'user_place'=>$user_place,
+                            'user_pin'=>$user_pin,
+                            'user_mobile'=>$user_mobile,
+                            'user_email'=>$user_email
+                        );
+
+                        $stmt->close();
+
+                        $response['error']= false;
+                        $response['message'] = 'User registered Successfully';
+                        $response['user'] = $user;
+                    }
                 }
             }
+            else
+            {
+                $response['error'] = true;
+                $response['message'] = 'required parameters are not available';
 
+            }
         break;
 
         case 'login':

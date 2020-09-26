@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2020 at 06:42 AM
+-- Generation Time: Sep 26, 2020 at 06:13 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -116,6 +116,16 @@ CREATE TABLE `subtests` (
   `ref_range` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `subtests`
+--
+
+INSERT INTO `subtests` (`sub_id`, `test_id`, `sub_name`, `ref_range`) VALUES
+(1, 3, 'Blood Count', '100-120'),
+(2, 2, 'stest1', '120 - 200 mg'),
+(3, 2, 'aksgbodbsj', '200-300'),
+(4, 3, 'Blood Count', '200-300');
+
 -- --------------------------------------------------------
 
 --
@@ -128,8 +138,16 @@ CREATE TABLE `test` (
   `specimen` varchar(20) NOT NULL,
   `rate` int(11) NOT NULL,
   `est_time` varchar(20) NOT NULL,
-  `desc` text NOT NULL
+  `instr` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `test`
+--
+
+INSERT INTO `test` (`test_id`, `test_name`, `specimen`, `rate`, `est_time`, `instr`) VALUES
+(2, 'Heamoglobin - Hb', 'BLOOD', 60, '1 Hour', 'jdskl vfsdznvop:AJBC;oASNDV;osDBvn;OSSnasjbdgsv\r\n\r\ndsf\r\ndsfd\r\nsf\r\nsd\r\nfsd\r\nf\r\ndsf\r\nsd\r\nf\r\nsd\r\nfsd\r\nf\r\nsdf\r\nds\r\nfds'),
+(3, 'Total Count', 'BLOOD', 100, '1 Hour 15 Minutes', 'ysvdiusbfoiudsxzhfouadigh8ysfh8opf88ghsd9pofop0jv0sdiyhgp0fhnpds9uhfpsudghf0sduz8ghf0sud8zhgf0s8xgdhgusr8g0dhz0d8ysb');
 
 -- --------------------------------------------------------
 
@@ -256,13 +274,13 @@ ALTER TABLE `results`
 -- AUTO_INCREMENT for table `subtests`
 --
 ALTER TABLE `subtests`
-  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `test`
 --
 ALTER TABLE `test`
-  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `test_request`

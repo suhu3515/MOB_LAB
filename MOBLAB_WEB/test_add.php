@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Pending Collection | MOBLAB</title>
+    <title>Add Test | MOBLAB</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -49,7 +49,7 @@
     <header class="header">
         <div class="logo-container">
             <a href="index.html" class="logo">
-                <img src="assets/images/new_logo.png" alt="Porto Admin" />
+                <img src="assets/images/new_logo.png" alt="ABC LAB" />
             </a>
             <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
                 <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -101,7 +101,7 @@
                                             Collection List
                                         </a>
                                     </li>
-                                    <li class="nav nav-active">
+                                    <li>
                                         <a href="pending_collection_demo.php">
                                             Pending Collection
                                         </a>
@@ -114,7 +114,7 @@
                                     <span>Tests</span>
                                 </a>
                                 <ul class="nav nav-children">
-                                    <li>
+                                    <li class="nav nav-active">
                                         <a href="tests_list.php">
                                             Tests
                                         </a>
@@ -203,82 +203,84 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Pending Collection</h2>
+                <h2>Add Test</h2>
 
             </header>
 
             <!-- start: page -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <div class="panel-actions">
+                                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                                <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                            </div>
+
+                            <h2 class="panel-title">Add Test</h2>
+                        </header>
+                        <form class="form-horizontal form-bordered" method="post">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="testname">Test Name <span class="required">*</span></label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="testname" name="testname" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="specimen">Specimen <span class="required">*</span></label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="specimen" name="specimen" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="price">Price <span class="required">*</span></label>
+                                    <div class="col-md-6">
+                                        <input type="number" class="form-control" id="price" name="price" required>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="esttime">Est. Time <span class="required">*</span></label>
+                                    <div class="col-md-6">
+                                        <input type="text"  class="form-control" id="esttime" name="esttime" placeholder="" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <footer class="panel-footer">
+                                <div class="row">
+                                    <div class="col-sm-9 col-sm-offset-3">
+                                        <input class="btn btn-primary" type="submit" name="add_test">
+                                        <button type="reset" class="btn btn-default">Reset</button>
+                                    </div>
+                                </div>
+                            </footer>
+
+                            <br><br>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-default">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <strong>Est. Time</strong> denotes the time taken for result generation after sample collection
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </section>
+                </div>
+            </div>
+
             <!-- end: page -->
         </section>
     </div>
-
-    <aside id="sidebar-right" class="sidebar-right">
-        <div class="nano">
-            <div class="nano-content">
-                <a href="#" class="mobile-close visible-xs">
-                    Collapse <i class="fa fa-chevron-right"></i>
-                </a>
-
-                <div class="sidebar-right-wrapper">
-
-                    <div class="sidebar-widget widget-calendar">
-                        <h6>Upcoming Tasks</h6>
-                        <div data-plugin-datepicker data-plugin-skin="dark" ></div>
-
-                        <ul>
-                            <li>
-                                <time datetime="2016-04-19T00:00+00:00">04/19/2016</time>
-                                <span>Company Meeting</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-widget widget-friends">
-                        <h6>Friends</h6>
-                        <ul>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </aside>
 
 </section>
 
@@ -332,6 +334,43 @@
 
 </body>
 </html>
-</html>
 
 <?php
+
+$server_name = "localhost";
+$user_name = "root";
+$password = "";
+$database = "moblab";
+
+$conn = new mysqli($server_name, $user_name, $password, $database);
+
+if (isset($_POST['add_test']))
+{
+    $test_name = $_POST['testname'];
+    $test_specimen = $_POST['specimen'];
+    $test_price = $_POST['price'];
+    $test_time = $_POST['esttime'];
+    $check_test = "select * from test where test_name='$test_name'";
+    $test_res = mysqli_query($conn, $check_test);
+    if ($test_res->num_rows > 0)
+    {
+        echo "<script>alert('Test Already exists.')</script>";
+    }
+    else
+    {
+        $new_test = "INSERT INTO test (test_name,specimen,rate,est_time) values ('$test_name','$test_specimen','$test_price','$test_time')";
+        $reg = mysqli_query($conn, $new_test);
+
+        if($reg)
+        {
+            echo "<script>alert('Test Added Successfully...')</script>";
+            echo "<script>window.location='tests_list.php'</script>";
+        }
+        else
+        {
+            echo "<script>alert('Error in Adding test')</script>";
+            $error_number = $conn->error;
+            echo $error_number;
+        }
+    }
+}

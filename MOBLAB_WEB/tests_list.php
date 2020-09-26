@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Pending Collection | MOBLAB</title>
+    <title>Tests List | MOBLAB</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -101,7 +101,7 @@
                                             Collection List
                                         </a>
                                     </li>
-                                    <li class="nav nav-active">
+                                    <li>
                                         <a href="pending_collection_demo.php">
                                             Pending Collection
                                         </a>
@@ -114,7 +114,7 @@
                                     <span>Tests</span>
                                 </a>
                                 <ul class="nav nav-children">
-                                    <li>
+                                    <li class="nav nav-active">
                                         <a href="tests_list.php">
                                             Tests
                                         </a>
@@ -203,11 +203,70 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Pending Collection</h2>
+                <h2>Test Lists</h2>
 
             </header>
 
             <!-- start: page -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                <div class="panel-actions">
+                                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                                </div>
+
+                                <h2 class="panel-title">Test List</h2>
+                            </header>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-md">
+                                            <a href="test_add.php">
+                                                <button id="addtestbbtn" class="btn btn-primary">Add <i class="fa fa-plus"></i> </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered table-striped mb-none" id="test_table">
+                                    <thead>
+                                    <tr>
+                                        <th>Test Name</th>
+                                        <th>Specimen</th>
+                                        <th>Rate</th>
+                                        <th>Est. Time</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                        $server_name = "localhost";
+                                        $user_name = "root";
+                                        $password = "";
+                                        $database = "moblab";
+
+                                        $conn = new mysqli($server_name, $user_name, $password, $database);
+
+                                        $test_sel = "select test_id, test_name, specimen, rate, est_time from test";
+                                        $res = $conn->query($test_sel);
+                                        while ($row = $res->fetch_array())
+                                        {
+                                            echo "<tr>";
+                                            echo "<td>$row[1]</td>";
+                                            echo "<td>$row[2]</td>";
+                                            echo "<td>₹$row[3]</td>";
+                                            echo "<td>$row[4]</td>";
+                                            echo "<td><a href='test_edit.php?tid=$row[0]'><button class='btn btn-primary'>Edit</button></a></td>";
+                                        }
+
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
             <!-- end: page -->
         </section>
     </div>
@@ -331,7 +390,6 @@
 <script src="assets/javascripts/dashboard/examples.dashboard.js"></script>
 
 </body>
-</html>
 </html>
 
 <?php
