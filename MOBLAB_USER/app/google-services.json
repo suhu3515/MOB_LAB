@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "936194753421",
+    "firebase_url": "https://moblab-442ef.firebaseio.com",
+    "project_id": "moblab-442ef",
+    "storage_bucket": "moblab-442ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936194753421:android:52a24211e6caa8b0e173c4",
+        "android_client_info": {
+          "package_name": "com.vhddev.moblab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "936194753421-8kj2se3vjhbhefltbc92f3eq2gaujfaq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vhddev.moblab",
+            "certificate_hash": "8bc898a0caaf2348723b34ba2228c19e52f895a8"
+          }
+        },
+        {
+          "client_id": "936194753421-9kkrhafcm35rq2s159ktccsrb2c9jfnk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGc9tjBNd8z2ETHco-v_c1qrPvGGexYYw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "936194753421-9kkrhafcm35rq2s159ktccsrb2c9jfnk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

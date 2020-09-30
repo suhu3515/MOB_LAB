@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MobLab</string>
+    <string name="caption_text">Please login to use our services</string>
+    <string name="txt_mobile_number">MOBILE NUMBER</string>
+    <string name="txt_pass">PASSWORD</string>
+    <string name="create_account">create an account</string>
+    <string name="txt_name">Full Name</string>
+    <string name="txt_house_name">House Name</string>
+    <string name="txt_dob">Date of Birth</string>
+    <string name="caption_txt">We need some basic informaton from you</string>
+    <string name="txt_place">PLACE</string>
+    <string name="txt_pincode">PINCODE</string>
+    <string name="txt_comm_caption">Tell us how can we contact you, also set your secure password.</string>
+    <string name="txt_mob">MOBILE NUMBER</string>
+    <string name="txt_mail">EMAIL ADDRESS</string>
+    <string name="txt_register">REGISTER</string>
+    <string name="txt_next">NEXT</string>
+    <string name="txt_already_memb">Already a member ?</string>
+    <string name="txt_verify">VERIFY YOUR NUMBER</string>
+    <string name="txt_otp">OTP</string>
+    <string name="verify">VERIFY</string>
+    <string name="txt_logout">LOGOUT</string>
+</resources>

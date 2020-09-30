@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2020 at 06:13 AM
+-- Generation Time: Sep 30, 2020 at 07:05 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -65,7 +65,6 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`login_id`, `mobile`, `password`, `l_role`) VALUES
-(2, 9633058949, 'abcde', 'TESTER'),
 (4, 9567105860, 'abcde', 'TESTER'),
 (9, 7559955255, 'qwer', 'TESTER');
 
@@ -124,7 +123,8 @@ INSERT INTO `subtests` (`sub_id`, `test_id`, `sub_name`, `ref_range`) VALUES
 (1, 3, 'Blood Count', '100-120'),
 (2, 2, 'stest1', '120 - 200 mg'),
 (3, 2, 'aksgbodbsj', '200-300'),
-(4, 3, 'Blood Count', '200-300');
+(4, 3, 'Blood Count', '200-300'),
+(5, 3, 'Blood Count', '100-120');
 
 -- --------------------------------------------------------
 
@@ -137,6 +137,7 @@ CREATE TABLE `test` (
   `test_name` varchar(30) NOT NULL,
   `specimen` varchar(20) NOT NULL,
   `rate` int(11) NOT NULL,
+  `ref_range` varchar(30) DEFAULT NULL,
   `est_time` varchar(20) NOT NULL,
   `instr` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -145,9 +146,11 @@ CREATE TABLE `test` (
 -- Dumping data for table `test`
 --
 
-INSERT INTO `test` (`test_id`, `test_name`, `specimen`, `rate`, `est_time`, `instr`) VALUES
-(2, 'Heamoglobin - Hb', 'BLOOD', 60, '1 Hour', 'jdskl vfsdznvop:AJBC;oASNDV;osDBvn;OSSnasjbdgsv\r\n\r\ndsf\r\ndsfd\r\nsf\r\nsd\r\nfsd\r\nf\r\ndsf\r\nsd\r\nf\r\nsd\r\nfsd\r\nf\r\nsdf\r\nds\r\nfds'),
-(3, 'Total Count', 'BLOOD', 100, '1 Hour 15 Minutes', 'ysvdiusbfoiudsxzhfouadigh8ysfh8opf88ghsd9pofop0jv0sdiyhgp0fhnpds9uhfpsudghf0sduz8ghf0sud8zhgf0s8xgdhgusr8g0dhz0d8ysb');
+INSERT INTO `test` (`test_id`, `test_name`, `specimen`, `rate`, `ref_range`, `est_time`, `instr`) VALUES
+(2, 'Heamoglobin - Hb', 'BLOOD', 100, NULL, '1 Hour', 'jdskl vfsdznvop:AJBC;oASNDV;osDBvn;OSSnasjbdgsv\r\n\r\ndsf\r\ndsfd\r\nsf\r\nsd\r\nfsd\r\nf\r\ndsf\r\nsd\r\nf\r\nsd\r\nfsd\r\nf\r\nsdf\r\nds\r\nfds'),
+(3, 'Total Count', 'BLOOD', 150, NULL, '1 Hour 15 Minutes', 'ysvdiusbfoiudsxzhfouadigh8ysfh8opf88ghsd9pofop0jv0sdiyhgp0fhnpds9uhfpsudghf0sduz8ghf0sud8zhgf0s8xgdhgusr8g0dhz0d8ysb'),
+(4, 'Heamoglobin - Hg', 'BLOOD', 200, NULL, '30 mins', NULL),
+(5, 'Test', 'Test', 600, NULL, '1 Hour 15 Minutes', NULL);
 
 -- --------------------------------------------------------
 
@@ -256,7 +259,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `observation`
@@ -274,13 +277,13 @@ ALTER TABLE `results`
 -- AUTO_INCREMENT for table `subtests`
 --
 ALTER TABLE `subtests`
-  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `test`
 --
 ALTER TABLE `test`
-  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `test_request`
