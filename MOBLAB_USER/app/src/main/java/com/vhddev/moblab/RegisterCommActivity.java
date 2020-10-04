@@ -169,7 +169,6 @@ public class RegisterCommActivity extends AppCompatActivity {
 
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
-                        finish();
                         Intent verifyIntent = new Intent(getApplicationContext(), VerifyActivity.class);
                         verifyIntent.putExtra("mob_num", mob);
                         startActivity(verifyIntent);
@@ -177,7 +176,7 @@ public class RegisterCommActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(getApplicationContext(), "Some error occured", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Mobile number already registered.", Toast.LENGTH_SHORT).show();
                     }
                 }
                 catch (JSONException e)

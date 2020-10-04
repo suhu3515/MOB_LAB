@@ -131,15 +131,7 @@ public class VerifyActivity extends AppCompatActivity {
                             {
                                 message = "invalid OTP entered";
                             }
-
-                            Snackbar snackbar = Snackbar.make(findViewById(R.id.parent), message, Snackbar.LENGTH_LONG);
-                            snackbar.setAction("Dismiss", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                }
-                            });
-                            snackbar.show();
+                            Toast.makeText(VerifyActivity.this, message, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

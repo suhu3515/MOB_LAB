@@ -41,6 +41,33 @@
     <!-- Head Libs -->
     <script src="assets/vendor/modernizr/modernizr.js"></script>
 
+    <script>
+        function validate_info()
+        {
+            if (document.test_add_form.testname.value()==" " || document.test_add_form.testname.value()==null)
+            {
+                alert("Please enter your test name");
+            }
+            else if (document.test_add_form.specimen.value()==" " || document.test_add_form.specimen.value()==null)
+            {
+                alert("Please enter the specimen");
+            }
+            else if (document.test_add_form.price.value()==" " || document.test_add_form.price.value()==null || isNaN(document.test_add_form.price.value())==true )
+            {
+                alert("Please enter the price")
+            }
+            else if (document.test_add_form.esttime.value()==" " || document.test_add_form.esttime.value()==null)
+            {
+                alert("Please enter the estimated time")
+            }
+        }
+
+        function check_test()
+        {
+            alert("Test already exists...")
+        }
+    </script>
+
 </head>
 <body>
 <section class="body">
@@ -48,7 +75,7 @@
     <!-- start: header -->
     <header class="header">
         <div class="logo-container">
-            <a href="index.html" class="logo">
+            <a href="index.php" class="logo">
                 <img src="assets/images/new_logo.png" alt="ABC LAB" />
             </a>
             <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
@@ -80,7 +107,7 @@
 
                         <ul class="nav nav-main ">
                             <li>
-                                <a href="index.html">
+                                <a href="index.php">
                                     <i class="fa fa-home" aria-hidden="true"></i>
                                     <span>Dashboard</span>
                                 </a>
@@ -122,11 +149,6 @@
                                     <li>
                                         <a href="subtests_list.php">
                                             SubTests
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="test_ins.php">
-                                            Test Instructions
                                         </a>
                                     </li>
                                 </ul>
@@ -220,7 +242,7 @@
 
                             <h2 class="panel-title">Add Test</h2>
                         </header>
-                        <form class="form-horizontal form-bordered" method="post">
+                        <form class="form-horizontal form-bordered" method="post" name="test_add_form">
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="testname">Test Name <span class="required">*</span></label>
@@ -243,8 +265,6 @@
                                     </div>
                                 </div>
 
-
-
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="esttime">Est. Time <span class="required">*</span></label>
                                     <div class="col-md-6">
@@ -252,11 +272,26 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="refrange">Ref. Range</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" id="refrange" name="refrange">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="instructions">Instructions</label>
+                                    <div class="col-md-6">
+                                        <textarea class="form-control" rows="3" id="instructions"  name="instructions" data-plugin-textarea-autosize></textarea>
+                                    </div>
+                                </div>
+
                             </div>
                             <footer class="panel-footer">
                                 <div class="row">
                                     <div class="col-sm-9 col-sm-offset-3">
-                                        <input class="btn btn-primary" type="submit" name="add_test">
+                                        <input class="btn btn-primary" type="submit" name="add_test" onsubmit="validate_info()">
                                         <button type="reset" class="btn btn-default">Reset</button>
                                     </div>
                                 </div>
@@ -350,15 +385,17 @@ if (isset($_POST['add_test']))
     $test_specimen = $_POST['specimen'];
     $test_price = $_POST['price'];
     $test_time = $_POST['esttime'];
+    $test_range = $_POST['refrange'];
+    $test_instr = $_POST['instructions'];
     $check_test = "select * from test where test_name='$test_name'";
     $test_res = mysqli_query($conn, $check_test);
     if ($test_res->num_rows > 0)
     {
-        echo "<script>alert('Test Already exists.')</script>";
+        echo "<script>check_test()</script>";
     }
     else
     {
-        $new_test = "INSERT INTO test (test_name,specimen,rate,est_time) values ('$test_name','$test_specimen','$test_price','$test_time')";
+        $new_test = "INSERT INTO test (test_name,specimen,rate,est_time,ref_range,instr) values ('$test_name','$test_specimen','$test_price','$test_time','$test_range','$test_instr')";
         $reg = mysqli_query($conn, $new_test);
 
         if($reg)

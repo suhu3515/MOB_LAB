@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2020 at 07:05 AM
+-- Generation Time: Oct 04, 2020 at 03:48 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -66,7 +66,9 @@ CREATE TABLE `login` (
 
 INSERT INTO `login` (`login_id`, `mobile`, `password`, `l_role`) VALUES
 (4, 9567105860, 'abcde', 'TESTER'),
-(9, 7559955255, 'qwer', 'TESTER');
+(26, 9895989598, '12345', 'TESTER'),
+(39, 9633058949, '121212', 'USER'),
+(40, 9446476922, '11qq11', 'USER');
 
 -- --------------------------------------------------------
 
@@ -124,7 +126,8 @@ INSERT INTO `subtests` (`sub_id`, `test_id`, `sub_name`, `ref_range`) VALUES
 (2, 2, 'stest1', '120 - 200 mg'),
 (3, 2, 'aksgbodbsj', '200-300'),
 (4, 3, 'Blood Count', '200-300'),
-(5, 3, 'Blood Count', '100-120');
+(5, 3, 'Blood Count', '100-120'),
+(6, 9, 'COUNT1', '100-300');
 
 -- --------------------------------------------------------
 
@@ -147,10 +150,10 @@ CREATE TABLE `test` (
 --
 
 INSERT INTO `test` (`test_id`, `test_name`, `specimen`, `rate`, `ref_range`, `est_time`, `instr`) VALUES
-(2, 'Heamoglobin - Hb', 'BLOOD', 100, NULL, '1 Hour', 'jdskl vfsdznvop:AJBC;oASNDV;osDBvn;OSSnasjbdgsv\r\n\r\ndsf\r\ndsfd\r\nsf\r\nsd\r\nfsd\r\nf\r\ndsf\r\nsd\r\nf\r\nsd\r\nfsd\r\nf\r\nsdf\r\nds\r\nfds'),
-(3, 'Total Count', 'BLOOD', 150, NULL, '1 Hour 15 Minutes', 'ysvdiusbfoiudsxzhfouadigh8ysfh8opf88ghsd9pofop0jv0sdiyhgp0fhnpds9uhfpsudghf0sduz8ghf0sud8zhgf0s8xgdhgusr8g0dhz0d8ysb'),
+(2, 'Heamoglobin - Hb', 'BLOOD', 100, '100-120', '1 Hour', 'jdskl vfsdznvop:AJBC;oASNDV;osDBvn;OSSnasjbdgsv\r\n\r\ndsf\r\ndsfd\r\nsf\r\nsd\r\nfsd\r\nf\r\ndsf\r\nsd\r\nf\r\nsd\r\nfsd\r\nf\r\nsdf\r\nds\r\nfds'),
+(3, 'Total Count', 'BLOOD', 150, '', '1 Hour 15 Minutes', 'fghdsaiokxksd[pfvjkadsop'),
 (4, 'Heamoglobin - Hg', 'BLOOD', 200, NULL, '30 mins', NULL),
-(5, 'Test', 'Test', 600, NULL, '1 Hour 15 Minutes', NULL);
+(9, 'WBC COUNT', 'BLOOD', 200, '150-200', '1 Hour', '');
 
 -- --------------------------------------------------------
 
@@ -259,7 +262,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `observation`
@@ -277,13 +280,13 @@ ALTER TABLE `results`
 -- AUTO_INCREMENT for table `subtests`
 --
 ALTER TABLE `subtests`
-  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `test`
 --
 ALTER TABLE `test`
-  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `test_request`

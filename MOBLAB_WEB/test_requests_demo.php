@@ -48,7 +48,7 @@
     <!-- start: header -->
     <header class="header">
         <div class="logo-container">
-            <a href="index.html" class="logo">
+            <a href="index.php" class="logo">
                 <img src="assets/images/new_logo.png" alt="Porto Admin" />
             </a>
             <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
@@ -80,7 +80,7 @@
 
                         <ul class="nav nav-main ">
                             <li>
-                                <a href="index.html">
+                                <a href="index.php">
                                     <i class="fa fa-home" aria-hidden="true"></i>
                                     <span>Dashboard</span>
                                 </a>
@@ -122,11 +122,6 @@
                                     <li>
                                         <a href="subtests_list.php">
                                             SubTests
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="test_ins.php">
-                                            Test Instructions
                                         </a>
                                     </li>
                                 </ul>

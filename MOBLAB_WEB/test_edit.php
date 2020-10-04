@@ -48,7 +48,7 @@
     <!-- start: header -->
     <header class="header">
         <div class="logo-container">
-            <a href="index.html" class="logo">
+            <a href="index.php" class="logo">
                 <img src="assets/images/new_logo.png" alt="ABC LAB" />
             </a>
             <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
@@ -80,7 +80,7 @@
 
                         <ul class="nav nav-main ">
                             <li>
-                                <a href="index.html">
+                                <a href="index.php">
                                     <i class="fa fa-home" aria-hidden="true"></i>
                                     <span>Dashboard</span>
                                 </a>
@@ -122,11 +122,6 @@
                                     <li>
                                         <a href="subtests_list.php">
                                             SubTests
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="test_ins.php">
-                                            Test Instructions
                                         </a>
                                     </li>
                                 </ul>
@@ -219,7 +214,7 @@
 
             $conn = new mysqli($server_name, $user_name, $password, $database);
 
-            $test_sel = "select test_name, specimen, rate, est_time from test where test_id='$tid'";
+            $test_sel = "select test_name, specimen, rate, est_time,ref_range,instr from test where test_id='$tid'";
             $res = $conn->query($test_sel);
             $row = $res->fetch_row();
 
@@ -227,6 +222,9 @@
             $tspec = $row[1];
             $trate = $row[2];
             $ttime = $row[3];
+            $trange = $row[4];
+            $tinstr = $row[5];
+
 
             ?>
             <div class="row">
@@ -278,6 +276,24 @@
                                         echo "<input type='text'  class='form-control' id='esttime' name='esttime' value='$ttime' required>";
                                         ?>
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="refrange">Ref. Range</label>
+                                    <div class="col-md-6">
+                                        <?php
+                                        echo "<input type='text'  class='form-control' id='refrange' name='refrange' value='$trange'>";
+                                        ?>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Instructions</label>
+                                    <?php
+                                    echo "<div class='col-md-6'>";
+                                    echo "<textarea class='form-control' rows='6' id='instructions' name='instructions' data-plugin-textarea-autosize>$tinstr</textarea>";
+                                    echo "</div>";
+                                    ?>
                                 </div>
 
                             </div>
@@ -371,14 +387,16 @@ if (isset($_POST['edit_test']))
     $test_specimen = $_POST['specimen'];
     $test_price = $_POST['price'];
     $test_time = $_POST['esttime'];
+    $test_range = $_POST['refrange'];
+    $test_instr = $_POST['instructions'];
 
 
-    $new_test = "UPDATE test SET test_name='$test_name',specimen='$test_specimen',rate='$test_price',est_time='$test_time' WHERE test_id='$tid'";
+    $new_test = "UPDATE test SET test_name='$test_name',specimen='$test_specimen',rate='$test_price',est_time='$test_time',ref_range='$test_range',instr='$test_instr' WHERE test_id='$tid'";
     $upd = mysqli_query($conn, $new_test);
 
     if($upd)
     {
-        echo "<script>alert('Test Updatd Successfully...')</script>";
+        echo "<script>alert('Test Updated Successfully...')</script>";
         echo "<script>window.location='tests_list.php'</script>";
     }
     else

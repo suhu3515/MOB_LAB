@@ -48,7 +48,7 @@
     <!-- start: header -->
     <header class="header">
         <div class="logo-container">
-            <a href="index.html" class="logo">
+            <a href="index.php" class="logo">
                 <img src="assets/images/new_logo.png" alt="Porto Admin" />
             </a>
             <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
@@ -80,7 +80,7 @@
 
                         <ul class="nav nav-main ">
                             <li>
-                                <a href="index.html">
+                                <a href="index.php">
                                     <i class="fa fa-home" aria-hidden="true"></i>
                                     <span>Dashboard</span>
                                 </a>
@@ -122,11 +122,6 @@
                                     <li>
                                         <a href="subtests_list.php">
                                             SubTests
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="test_ins.php">
-                                            Test Instructions
                                         </a>
                                     </li>
                                 </ul>
@@ -236,6 +231,7 @@
                                         <th>Specimen</th>
                                         <th>Rate</th>
                                         <th>Est. Time</th>
+                                        <th>Ref. Range</th>
                                         <th>Edit</th>
                                     </tr>
                                     </thead>
@@ -248,7 +244,7 @@
 
                                         $conn = new mysqli($server_name, $user_name, $password, $database);
 
-                                        $test_sel = "select test_id, test_name, specimen, rate, est_time from test";
+                                        $test_sel = "select test_id, test_name, specimen, rate, est_time, ref_range from test";
                                         $res = $conn->query($test_sel);
                                         while ($row = $res->fetch_array())
                                         {
@@ -257,6 +253,7 @@
                                             echo "<td>$row[2]</td>";
                                             echo "<td>₹$row[3]</td>";
                                             echo "<td>$row[4]</td>";
+                                            echo "<td>$row[5]</td>";
                                             echo "<td><a href='test_edit.php?tid=$row[0]'><button class='btn btn-primary'>Edit</button></a></td>";
                                         }
 

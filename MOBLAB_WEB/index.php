@@ -48,7 +48,7 @@
 			<!-- start: header -->
 			<header class="header">
 				<div class="logo-container">
-					<a href="index.html" class="logo">
+					<a href="index.php" class="logo">
 						<img src="assets/images/new_logo.png" alt="Porto Admin" />
 					</a>
 					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
@@ -80,7 +80,7 @@
 				            
 				                <ul class="nav nav-main ">
 				                    <li>
-				                        <a href="index.html">
+				                        <a href="index.php">
 				                            <i class="fa fa-home" aria-hidden="true"></i>
 				                            <span>Dashboard</span>
 				                        </a>
@@ -122,11 +122,6 @@
 				                            <li>
 				                                <a href="subtests_list.php">
 				                                    SubTests
-				                                </a>
-				                            </li>
-				                            <li>
-				                                <a href="test_ins.php">
-				                                    Test Instructions
 				                                </a>
 				                            </li>
 				                        </ul>
@@ -207,7 +202,25 @@
 
 					</header>
 
+
+
 					<!-- start: page -->
+                    <?php
+
+                    $server_name = "localhost";
+                    $user_name = "root";
+                    $password = "";
+                    $database = "moblab";
+
+                    $conn = new mysqli($server_name, $user_name, $password, $database);
+
+                    $sel_user_count = "select count(*) from login where l_role='USER'";
+                    $res_user_count = $conn->query($sel_user_count);
+                    while ($row = $res_user_count->fetch_row())
+                    {
+                        $user_count = $row[0];
+                    }
+                    ?>
 					<div class="row">
 						<div class="col-md-6 col-lg-12 col-xl-6">
 							<div class="row">
@@ -289,7 +302,9 @@
 													<div class="summary">
 														<h4 class="title">Total Users</h4>
 														<div class="info">
-															<strong class="amount">137</strong>
+                                                            <?php
+                                                                echo "<strong class='amount'>$user_count</strong>";
+                                                            ?>
 														</div>
 													</div>
 												</div>

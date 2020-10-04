@@ -20,4 +20,5 @@
     <string name="txt_otp">OTP</string>
     <string name="verify">VERIFY</string>
     <string name="txt_logout">LOGOUT</string>
+    <string name="txt_location">We would like to know to your location for delivering best services</string>
 </resources>
