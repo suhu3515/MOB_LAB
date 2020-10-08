@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 04, 2020 at 03:48 AM
+-- Generation Time: Oct 08, 2020 at 03:45 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -67,7 +67,6 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`login_id`, `mobile`, `password`, `l_role`) VALUES
 (4, 9567105860, 'abcde', 'TESTER'),
 (26, 9895989598, '12345', 'TESTER'),
-(39, 9633058949, '121212', 'USER'),
 (40, 9446476922, '11qq11', 'USER');
 
 -- --------------------------------------------------------
@@ -153,7 +152,8 @@ INSERT INTO `test` (`test_id`, `test_name`, `specimen`, `rate`, `ref_range`, `es
 (2, 'Heamoglobin - Hb', 'BLOOD', 100, '100-120', '1 Hour', 'jdskl vfsdznvop:AJBC;oASNDV;osDBvn;OSSnasjbdgsv\r\n\r\ndsf\r\ndsfd\r\nsf\r\nsd\r\nfsd\r\nf\r\ndsf\r\nsd\r\nf\r\nsd\r\nfsd\r\nf\r\nsdf\r\nds\r\nfds'),
 (3, 'Total Count', 'BLOOD', 150, '', '1 Hour 15 Minutes', 'fghdsaiokxksd[pfvjkadsop'),
 (4, 'Heamoglobin - Hg', 'BLOOD', 200, NULL, '30 mins', NULL),
-(9, 'WBC COUNT', 'BLOOD', 200, '150-200', '1 Hour', '');
+(9, 'WBC COUNT', 'BLOOD', 200, '150-200', '1 Hour', ''),
+(10, 'Sugar ', 'URINE', 200, '', '1 Hour 15 Minutes', '');
 
 -- --------------------------------------------------------
 
@@ -165,12 +165,48 @@ CREATE TABLE `test_request` (
   `tr_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `tester_id` int(11) DEFAULT NULL,
-  `pre_loc` varchar(50) DEFAULT NULL,
+  `pre_loc` text DEFAULT NULL,
   `doc_name` varchar(25) DEFAULT NULL,
+  `user_test` varchar(50) DEFAULT NULL,
   `tr_date` date NOT NULL,
   `pay_stat` int(11) NOT NULL DEFAULT 0,
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `test_request`
+--
+
+INSERT INTO `test_request` (`tr_id`, `user_id`, `tester_id`, `pre_loc`, `doc_name`, `user_test`, `tr_date`, `pay_stat`, `status`) VALUES
+(38, 40, NULL, NULL, 'SELF', 'Abe', '2020-10-08', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(35) NOT NULL,
+  `dob` date NOT NULL,
+  `h_name` varchar(50) NOT NULL,
+  `place` varchar(50) NOT NULL,
+  `pin` int(7) NOT NULL,
+  `mobile` bigint(12) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `location` text DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_name`, `dob`, `h_name`, `place`, `pin`, `mobile`, `email`, `location`, `status`) VALUES
+(4, 'aslam k', '1998-07-17', 'kallingal house', 'edappal', 679590, 9567105860, 'aslamkedpl12@gmail.com', NULL, 1),
+(26, 'ashwini m', '1995-01-10', 'Valathel house', 'mavoor', 679581, 9895989598, 'ashwiniach9020@gmail.com', NULL, 1),
+(40, 'salih', '2020-10-04', 'valathel', 'maranchery', 679581, 9446476922, 'std5b1237@greenvalleycampus.com', 'https://maps.google.com/maps?q=10.73966955,75.97423217', 1);
 
 --
 -- Indexes for dumped tables
@@ -243,6 +279,12 @@ ALTER TABLE `test_request`
   ADD KEY `fk_tester_tr` (`tester_id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -286,13 +328,19 @@ ALTER TABLE `subtests`
 -- AUTO_INCREMENT for table `test`
 --
 ALTER TABLE `test`
-  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `test_request`
 --
 ALTER TABLE `test_request`
-  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables

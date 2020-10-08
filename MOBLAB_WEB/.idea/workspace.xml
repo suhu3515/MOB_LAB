@@ -19,6 +19,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -52,6 +53,14 @@
       <workItem from="1601694118890" duration="79000" />
       <workItem from="1601694314502" duration="771000" />
       <workItem from="1601708623569" duration="7580000" />
+      <workItem from="1601776776175" duration="1664000" />
+      <workItem from="1601787772110" duration="415000" />
+      <workItem from="1601870931944" duration="3762000" />
+      <workItem from="1602059401598" duration="3220000" />
+      <workItem from="1602081650909" duration="1179000" />
+      <workItem from="1602142720699" duration="3400000" />
+      <workItem from="1602155264579" duration="50000" />
+      <workItem from="1602158597373" duration="1137000" />
     </task>
     <servers />
   </component>
@@ -63,14 +72,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1601444615131" />
-    <state x="517" y="287" key="NewPhpFileDialog" timestamp="1601187737471">
+    <state x="517" y="287" key="NewPhpFileDialog" timestamp="1602059520113">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="517" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1601187737471" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1600999827004">
+    <state x="517" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1602059520113" />
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1602062251143">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1600999827004" />
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1602062251143" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1601412835512">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

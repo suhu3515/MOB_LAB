@@ -25,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
         tv_reg_link = findViewById(R.id.txt_reg);
         btn_login = findViewById(R.id.btn_login);
 
+
+
         if (SharedPrefManager.getInstance(this).isLoggedIn())
         {
             finish();

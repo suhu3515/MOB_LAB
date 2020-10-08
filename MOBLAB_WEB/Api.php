@@ -122,6 +122,98 @@ if (isset($_GET['apicall']))
             }
         break;
 
+        case "book_test":
+
+            if (isTheseParametersAvailable(array('logged_user','doc_name','tr_date')))
+            {
+                $logged_user_id2 = $_POST['logged_user'];
+                $doctor_name = $_POST['doc_name'];
+                $testreq_date = $_POST['tr_date'];
+
+                $stmt3 = $conn->prepare("SELECT * FROM test_request where user_id=? and status=1");
+                $stmt3->bind_param("s",$logged_user_id2);
+                $stmt3->execute();
+                $stmt3->store_result();
+                if ($stmt3->num_rows > 0 )
+                {
+                    $response['error'] = true;
+                    $response['message'] = 'User already booked a test';
+                    $stmt3->close();
+                }
+                else
+                {
+                    $stmt3 = $conn->prepare("INSERT INTO test_request(user_id,doc_name,tr_date) VALUES (?,?,?)");
+                    $stmt3->bind_param("sss",$logged_user_id2,$doctor_name,$testreq_date);
+                    if ($stmt3->execute())
+                    {
+                        $response['error'] = false;
+                        $response['message'] = 'Booked Test Successfully';
+                    }
+                }
+            }
+            else
+            {
+                $response['error'] = true;
+                $response['message'] = 'required parameters are not available';
+            }
+
+        break;
+
+        case "get_specimen":
+
+            $stmt4 = $conn->prepare("select distinct specimen from test");
+            $stmt4->execute();
+            $stmt4->bind_result($specimen);
+            $tspecimen = array();
+
+            while ($stmt4->fetch())
+            {
+                $temp = array();
+                $temp = $specimen;
+                array_push($tspecimen,$temp);
+            }
+
+            if (sizeof($tspecimen) != null)
+            {
+                $response['error'] = false;
+                $response['message'] = 'Recieved specimen list ';
+                $response['specimen'] = $tspecimen;
+            }
+            else
+            {
+                $response['error'] = true;
+                $response['message'] = 'Problems in fetching';
+            }
+
+        break;
+
+        case "add_user_test":
+
+            if(isTheseParametersAvailable(array('user_test','user_id')))
+            {
+                $user_test = $_POST['user_test'];
+                $logged_user_id3 = $_POST['user_id'];
+
+                $stmt5 = $conn->prepare("update test_request set user_test=? where user_id=?");
+                $stmt5->bind_param("ss", $user_test,$logged_user_id3);
+                if ($stmt5->execute())
+                {
+                    $response['error'] = false;
+                    $response['message'] = 'Added test.';
+                }
+                else
+                {
+                    $response['error'] = true;
+                }
+            }
+            else
+            {
+                $response['error'] = true;
+                $response['message'] = 'required parameters are not available';
+            }
+
+        break;
+
         default:
             $response['error'] = true;
             $response['message'] = 'Invalid operation Called';

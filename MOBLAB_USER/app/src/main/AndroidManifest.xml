@@ -3,7 +3,9 @@
     package="com.vhddev.moblab">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:allowBackup="true"
@@ -14,8 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LocationActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".AddTestsActivity"></activity>
+        <activity android:name=".BookRequestActivity" />
+        <activity
+            android:name=".LocationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".VerifyActivity"
             android:theme="@style/AppTheme.NoActionBar" />
