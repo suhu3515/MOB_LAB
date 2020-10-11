@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Test Requests | MOBLAB</title>
+    <title>Request Details | MOBLAB</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -49,7 +49,7 @@
     <header class="header">
         <div class="logo-container">
             <a href="index.php" class="logo">
-                <img src="assets/images/new_logo.png" alt="Porto Admin" />
+                <img src="assets/images/new_logo.png" alt="ABC LAB" />
             </a>
             <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
                 <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -91,8 +91,8 @@
                                     <span>Requests</span>
                                 </a>
                                 <ul class="nav nav-children ">
-                                    <li class="nav nav-active">
-                                        <a href="test_requests_demo.php">
+                                    <li>
+                                        <a href="test_requests.php">
                                             Test Requests
                                         </a>
                                     </li>
@@ -198,83 +198,147 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Test Requests</h2>
+                <h2>Add Tester</h2>
 
             </header>
 
             <!-- start: page -->
 
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <div class="panel-actions">
+                                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                                <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                            </div>
+
+                            <h2 class="panel-title">Tester Details</h2>
+                        </header>
+                        <form class="form-horizontal form-bordered" method="post">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <?php
+                                    $tr_id = $_GET['tr_id'];
+                                    $server_name = "localhost";
+                                    $user_name = "root";
+                                    $password = "";
+                                    $database = "moblab";
+
+                                    $conn = new mysqli($server_name, $user_name, $password, $database);
+
+                                    $test_req = "select user_id, pre_loc, doc_name, user_test, tr_date, pay_stat, status from test_request where tr_id='$tr_id'";
+                                    $res = $conn->query($test_req);
+                                    $test_req_data = $res->fetch_row();
+                                    $users = "select user_name, dob from users where user_id='$test_req_data[0]'";
+                                    $res_users = $conn->query($users);
+                                    $users_data = $res_users->fetch_row();
+                                    $users_name = $users_data[0];
+                                    $users_dob = $users_data[1];
+                                    $doctor_name = $test_req_data[2];
+                                    $prescription = $test_req_data[1];
+                                    $user_req_test = $test_req_data[3];
+                                    $tr_date = $test_req_data[4];
+                                    $user_pay = $test_req_data[5];
+                                    $tr_status = $test_req_data[6];
+                                    ?>
+                                    <label class='col-md-3 control-label' for='testername'>User Name</label>
+                                    <?php
+                                    echo "<label class='col-md-3 control-label'>$users_name</label>";
+                                    ?>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Date of Birth</label>
+                                    <?php
+                                    echo "<label class='col-md-3 control-label'>$users_dob</label>";
+                                    ?>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Doctor Name</label>
+                                    <?php
+                                    echo "<label class='col-md-3 control-label'>$doctor_name</label>";
+                                    ?>
+                                </div>
+
+                                <?php
+                                if ($prescription !=null)
+                                {
+                                    echo "<div class='form-group'>";
+                                    echo "<label class='col-md-3 control-label'>Prescription</label>";
+                                    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                          <img src='$prescription' width='350' height='400'>";
+                                    echo "</div>";
+                                }
+                                ?>
+
+                                <?php
+                                if ($user_req_test !=null)
+                                {
+                                    echo "<div class='form-group'>";
+                                    echo "<label class='col-md-3 control-label'>User Requested Test</label>";
+                                    echo "<label class='col-md-3 control-label'>$user_req_test</label>";
+                                    echo "</div>";
+                                }
+                                ?>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Request Date</label>
+                                    <?php
+                                    echo "<label class='col-md-3 control-label'>$tr_date</label>";
+                                    ?>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class='col-md-3 control-label'>Payment Status</label>
+                                    <?php
+                                    if ($user_pay==0)
+                                    {
+                                        echo "<label class='col-md-3 control-label'>Not Paid</label>";
+                                    }
+                                    else
+                                    {
+                                        echo "<label class='col-md-3 control-label'>Paid</label>";
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                            <?php
+
+                            if ($tr_status == 1)
+                            {
+                                echo "<footer class='panel-footer'>";
+                                echo "<div class='row'>";
+                                echo "<div class='col-sm-9 col-sm-offset-3'>";
+                                echo "<input class='btn btn-primary' type='submit' value='Accept' name='tr_accpt' id='tr_accpt'>";
+                                echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                                echo "<input class='btn btn-danger' type='submit' name='tr_reject' id='tr_reject' value='Reject'>";
+                                echo "</div>";
+                                echo "</div>";
+                                echo "</footer>";
+                            }
+                            else
+                            {
+                                echo "<footer class='panel-footer'>";
+                                echo "<div class='row'>";
+                                echo "<div class='col-sm-9 col-sm-offset-3'>";
+                                echo "<a href='test_requests.php'><button class='btn btn-default' type='button'>Go back</button></a>";
+                                echo "</div>";
+                                echo "</div>";
+                                echo "</footer>";
+                            }
+                            ?>
+                        </form>
+                    </section>
+                </div>
+            </div>
+
             <!-- end: page -->
         </section>
     </div>
-
-    <aside id="sidebar-right" class="sidebar-right">
-        <div class="nano">
-            <div class="nano-content">
-                <a href="#" class="mobile-close visible-xs">
-                    Collapse <i class="fa fa-chevron-right"></i>
-                </a>
-
-                <div class="sidebar-right-wrapper">
-
-                    <div class="sidebar-widget widget-calendar">
-                        <h6>Upcoming Tasks</h6>
-                        <div data-plugin-datepicker data-plugin-skin="dark" ></div>
-
-                        <ul>
-                            <li>
-                                <time datetime="2016-04-19T00:00+00:00">04/19/2016</time>
-                                <span>Company Meeting</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-widget widget-friends">
-                        <h6>Friends</h6>
-                        <ul>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </aside>
 
 </section>
 
@@ -329,3 +393,32 @@
 </body>
 </html>
 <?php
+
+
+$conn = new mysqli($server_name, $user_name, $password, $database);
+
+if (isset($_POST['tr_accpt']))
+{
+    $tr_id = $_GET['tr_id'];
+
+    $sql_assgn = "insert into assigned_test(testreq_id) values ('$tr_id')";
+    $sql_status = "update test_request set status=2 where tr_id='$tr_id'";
+    $res_assgn = $conn->query($sql_assgn);
+    $res_stat = $conn->query($sql_status);
+    if ($res_assgn && $res_stat)
+    {
+        echo "<script>alert('Test Request Accepted successfully...')</script>";
+        echo "<script>window.location='test_requests.php'</script>";
+    }
+}
+if (isset($_POST['tr_reject']))
+{
+    $sql_st = "update test_request set status=0 where tr_id='$tr_id'";
+    $res_status = $conn->query($sql_st);
+    if ($res_status)
+    {
+        echo "<script>alert('Test Request has been rejected...')</script>";
+        echo "<script>window.location='test_requests.php'</script>";
+    }
+}
+?>

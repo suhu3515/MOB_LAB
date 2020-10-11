@@ -119,7 +119,7 @@
                                 </a>
                                 <ul class="nav nav-children ">
                                     <li>
-                                        <a href="test_requests_demo.php">
+                                        <a href="test_requests.php">
                                             Test Requests
                                         </a>
                                     </li>
