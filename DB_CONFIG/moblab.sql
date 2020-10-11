@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2020 at 03:45 PM
+-- Generation Time: Oct 11, 2020 at 08:04 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -67,7 +67,9 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`login_id`, `mobile`, `password`, `l_role`) VALUES
 (4, 9567105860, 'abcde', 'TESTER'),
 (26, 9895989598, '12345', 'TESTER'),
-(40, 9446476922, '11qq11', 'USER');
+(40, 9446476922, '11qq11', 'USER'),
+(41, 7994367615, '1212123', 'USER'),
+(42, 9633058949, '1212123', 'USER');
 
 -- --------------------------------------------------------
 
@@ -178,7 +180,9 @@ CREATE TABLE `test_request` (
 --
 
 INSERT INTO `test_request` (`tr_id`, `user_id`, `tester_id`, `pre_loc`, `doc_name`, `user_test`, `tr_date`, `pay_stat`, `status`) VALUES
-(38, 40, NULL, NULL, 'SELF', 'Abe', '2020-10-08', 0, 1);
+(38, 40, NULL, NULL, 'SELF', 'Abe', '2020-10-08', 0, 1),
+(39, 41, NULL, 'http://192.168.43.159/moblab/UPLOADS/41_USER_PRESCRIPTION.png', 'SELF', NULL, '2020-10-09', 0, 1),
+(41, 42, NULL, NULL, 'SELF', 'faiabsjajkagao', '2020-10-09', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -206,7 +210,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `user_name`, `dob`, `h_name`, `place`, `pin`, `mobile`, `email`, `location`, `status`) VALUES
 (4, 'aslam k', '1998-07-17', 'kallingal house', 'edappal', 679590, 9567105860, 'aslamkedpl12@gmail.com', NULL, 1),
 (26, 'ashwini m', '1995-01-10', 'Valathel house', 'mavoor', 679581, 9895989598, 'ashwiniach9020@gmail.com', NULL, 1),
-(40, 'salih', '2020-10-04', 'valathel', 'maranchery', 679581, 9446476922, 'std5b1237@greenvalleycampus.com', 'https://maps.google.com/maps?q=10.73966955,75.97423217', 1);
+(40, 'salih', '2020-10-04', 'valathel', 'maranchery', 679581, 9446476922, 'std5b1237@greenvalleycampus.com', 'https://maps.google.com/maps?q=10.73966955,75.97423217', 1),
+(41, 'safwan', '2002-09-30', 'valathel', 'maranchery', 679581, 7994367615, 'safwan@gmail.com', NULL, 1),
+(42, 'suhail', '1998-10-28', 'valathel', 'maranchery', 679581, 9633058949, 'suhu3515@gmail.com', 'https://maps.google.com/maps?q=10.74021721,75.97478595', 1);
 
 --
 -- Indexes for dumped tables
@@ -304,7 +310,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `observation`
@@ -334,13 +340,13 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT for table `test_request`
 --
 ALTER TABLE `test_request`
-  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Constraints for dumped tables

@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -58,6 +59,7 @@ public class AddTestsActivity extends AppCompatActivity{
         et_user_test = findViewById(R.id.et_user_test);
 
         user_id = String.valueOf(user.getUid());
+
 
 
         button_upload_img.setOnClickListener(new View.OnClickListener() {

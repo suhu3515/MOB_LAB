@@ -25,7 +25,7 @@ import java.util.Locale;
 
 public class BookRequestActivity extends AppCompatActivity {
 
-    String loggedIn_username, user_tr_date,doc_name;
+    String loggedIn_username, user_tr_date,doc_name, loggedIn_dob;
     int loggedIn_user;
     Button btn_addTestReq, btn_addTests;
     TextView tv_tr_status, tv_user_name, tv_user_dob;
@@ -41,6 +41,7 @@ public class BookRequestActivity extends AppCompatActivity {
         User user = SharedPrefManager.getInstance(this).getUser();
         loggedIn_user = user.getUid();
         loggedIn_username = user.getUname();
+        loggedIn_dob = user.getUdob();
 
 
         btn_addTestReq = findViewById(R.id.btn_addtr);
@@ -49,6 +50,10 @@ public class BookRequestActivity extends AppCompatActivity {
         tv_user_name = findViewById(R.id.tv_username);
         tv_user_dob = findViewById(R.id.tv_userdob);
         et_doc_name = findViewById(R.id.et_userdoc);
+
+        tv_user_name.setText(loggedIn_username);
+        tv_user_dob.setText(loggedIn_dob);
+
         user_tr_date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
          btn_addTestReq.setOnClickListener(new View.OnClickListener() {
