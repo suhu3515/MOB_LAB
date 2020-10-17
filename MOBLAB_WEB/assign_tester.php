@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Request Details | MOBLAB</title>
+    <title>Add Test Details | MOBLAB</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -38,8 +38,28 @@
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/stylesheets/theme-custom.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudfare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
     <!-- Head Libs -->
     <script src="assets/vendor/modernizr/modernizr.js"></script>
+
+    <script type="text/javascript">
+
+        function getTests(spec)
+        {
+            $('#testsel').html('');
+            $.ajax({
+                type: 'POST',
+                url: 'ajaxData.php',
+                data: {specimen: spec},
+                success : function (data)
+                {
+                    $('#testsel').html(data);
+                }
+            })
+        }
+
+    </script>
 
 </head>
 <body>
@@ -119,7 +139,7 @@
                                             Tests
                                         </a>
                                     </li>
-                                    <li>
+                                    <li class="nav nav-active">
                                         <a href="subtests_list.php">
                                             SubTests
                                         </a>
@@ -198,7 +218,7 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Request Details</h2>
+                <h2>Add Test Details</h2>
 
             </header>
 
@@ -213,124 +233,53 @@
                                 <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
                             </div>
 
-                            <h2 class="panel-title">Request Details</h2>
+                            <h2 class="panel-title">Add Test Details</h2>
                         </header>
                         <form class="form-horizontal form-bordered" method="post">
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <?php
-                                    $tr_id = $_GET['tr_id'];
-                                    $server_name = "localhost";
-                                    $user_name = "root";
-                                    $password = "";
-                                    $database = "moblab";
+                                    <label class="col-md-3 control-label" for="specimensel">Specimen Name <span class="required" onchange="getTests(this.value)">*</span></label>
+                                    <div class="col-md-6">
+                                        <?php
+                                        $server_name = "localhost";
+                                        $user_name = "root";
+                                        $password = "";
+                                        $database = "moblab";
 
-                                    $conn = new mysqli($server_name, $user_name, $password, $database);
-
-                                    $test_req = "select user_id, pre_loc, doc_name, user_test, tr_date, pay_stat, status from test_request where tr_id='$tr_id'";
-                                    $res = $conn->query($test_req);
-                                    $test_req_data = $res->fetch_row();
-                                    $users = "select user_name, dob from users where user_id='$test_req_data[0]'";
-                                    $res_users = $conn->query($users);
-                                    $users_data = $res_users->fetch_row();
-                                    $users_name = $users_data[0];
-                                    $users_dob = $users_data[1];
-                                    $doctor_name = $test_req_data[2];
-                                    $prescription = $test_req_data[1];
-                                    $user_req_test = $test_req_data[3];
-                                    $tr_date = $test_req_data[4];
-                                    $user_pay = $test_req_data[5];
-                                    $tr_status = $test_req_data[6];
-                                    ?>
-                                    <label class='col-md-3 control-label' for='testername'>User Name</label>
-                                    <?php
-                                    echo "<label class='col-md-3 control-label'>$users_name</label>";
-                                    ?>
+                                        $conn = new mysqli($server_name, $user_name, $password, $database);
+                                        $sel_specimen = "select distinct specimen from test";
+                                        $res_spec = $conn->query($sel_specimen);
+                                        ?>
+                                        <select class="form-control mb-md" name="specimensel" id="specimensel" onchange="getTests(this.value)" required>
+                                            <option value="" selected>Select specimen</option>
+                                            <?php
+                                                while ( $row = $res_spec->fetch_array())
+                                                    {
+                                                        echo "<option value='$row[0]'>$row[0]</option>";
+                                                    }
+                                            ?>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Date of Birth</label>
-                                    <?php
-                                    echo "<label class='col-md-3 control-label'>$users_dob</label>";
-                                    ?>
+                                    <label class="col-md-3 control-label" for="testname">Test Name <span class="required">*</span></label>
+                                    <div class="col-md-6">
+                                        <select name="testsel" id="testsel" class="form-control mb-md">
+                                            <option value="" selected>Select specimen first</option>
+                                    </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Doctor Name</label>
-                                    <?php
-                                    echo "<label class='col-md-3 control-label'>$doctor_name</label>";
-                                    ?>
-                                </div>
 
-                                <?php
-                                if ($prescription !=null)
-                                {
-                                    echo "<div class='form-group'>";
-                                    echo "<label class='col-md-3 control-label'>Prescription</label>";
-                                    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                          <img src='$prescription' width='350' height='400'>";
-                                    echo "</div>";
-                                }
-                                ?>
-
-                                <?php
-                                if ($user_req_test !=null)
-                                {
-                                    echo "<div class='form-group'>";
-                                    echo "<label class='col-md-3 control-label'>User Requested Test</label>";
-                                    echo "<label class='col-md-3 control-label'>$user_req_test</label>";
-                                    echo "</div>";
-                                }
-                                ?>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Request Date</label>
-                                    <?php
-                                    echo "<label class='col-md-3 control-label'>$tr_date</label>";
-                                    ?>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class='col-md-3 control-label'>Payment Status</label>
-                                    <?php
-                                    if ($user_pay==0)
-                                    {
-                                        echo "<label class='col-md-3 control-label'>Not Paid</label>";
-                                    }
-                                    else
-                                    {
-                                        echo "<label class='col-md-3 control-label'>Paid</label>";
-                                    }
-                                    ?>
-                                </div>
                             </div>
-                            <?php
-
-                            if ($tr_status == 1)
-                            {
-                                echo "<footer class='panel-footer'>";
-                                echo "<div class='row'>";
-                                echo "<div class='col-sm-9 col-sm-offset-3'>";
-                                echo "<input class='btn btn-primary' type='submit' value='Accept' name='tr_accpt' id='tr_accpt'>";
-                                echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                                echo "<input class='btn btn-danger' type='submit' name='tr_reject' id='tr_reject' value='Reject'>";
-                                echo "</div>";
-                                echo "</div>";
-                                echo "</footer>";
-                            }
-                            else
-                            {
-                                echo "<footer class='panel-footer'>";
-                                echo "<div class='row'>";
-                                echo "<div class='col-sm-9 col-sm-offset-3'>";
-                                echo "<a href='test_requests.php'><button class='btn btn-default' type='button'>Go back</button></a>";
-                                echo "</div>";
-                                echo "</div>";
-                                echo "</footer>";
-                            }
-                            ?>
+                            <footer class="panel-footer">
+                                <div class="row">
+                                    <div class="col-sm-9 col-sm-offset-3">
+                                        <input class="btn btn-primary" type="submit" value="Add Test" name="add_test_det">
+                                        <input type="submit" class="btn btn-success" value="Final submit" name="submit_tr" id="submit_tr">
+                                    </div>
+                                </div>
+                            </footer>
                         </form>
                     </section>
                 </div>
@@ -392,26 +341,26 @@
 
 </body>
 </html>
+
 <?php
-
-
-$conn = new mysqli($server_name, $user_name, $password, $database);
-
-if (isset($_POST['tr_accpt']))
+if (isset($_POST['add_test_det']))
 {
-    $tr_id = $_GET['tr_id'];
+    $req_id = $_GET['tr_id'];
+    $testsel = $_POST['testsel'];
+    $new_tests = "INSERT INTO assigned_test (testreq_id,test_id) values ('$req_id','$testsel')";
+        $reg = mysqli_query($conn, $new_tests);
 
-    echo "<script>window.location='add_test_details.php?tr_id=$tr_id'</script>";
+        if($reg)
+        {
+            echo "<script>alert('Test Added Successfully...')</script>";
+        }
+        else
+        {
+            echo "<script>alert('Error in Adding test')</script>";
+        }
+}
+
+if (isset($_POST['submit_tr']))
+{
 
 }
-if (isset($_POST['tr_reject']))
-{
-    $sql_st = "update test_request set status=0 where tr_id='$tr_id'";
-    $res_status = $conn->query($sql_st);
-    if ($res_status)
-    {
-        echo "<script>alert('Test Request has been rejected...')</script>";
-        echo "<script>window.location='test_requests.php'</script>";
-    }
-}
-?>
