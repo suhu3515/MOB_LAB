@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Add Test Details | MOBLAB</title>
+    <title>Assign Tester | MOBLAB</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -43,23 +43,6 @@
     <!-- Head Libs -->
     <script src="assets/vendor/modernizr/modernizr.js"></script>
 
-    <script type="text/javascript">
-
-        function getTests(spec)
-        {
-            $('#testsel').html('');
-            $.ajax({
-                type: 'POST',
-                url: 'ajaxData.php',
-                data: {specimen: spec},
-                success : function (data)
-                {
-                    $('#testsel').html(data);
-                }
-            })
-        }
-
-    </script>
 
 </head>
 <body>
@@ -117,7 +100,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="collection_list_demo.php">
+                                        <a href="collection_list.php">
                                             Collection List
                                         </a>
                                     </li>
@@ -233,7 +216,7 @@
                                 <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
                             </div>
 
-                            <h2 class="panel-title">Add Test Details</h2>
+                            <h2 class="panel-title">Assign Tester</h2>
                         </header>
                         <form class="form-horizontal form-bordered" method="post">
                             <div class="panel-body">
@@ -247,26 +230,18 @@
                                         $database = "moblab";
 
                                         $conn = new mysqli($server_name, $user_name, $password, $database);
-                                        $sel_specimen = "select distinct specimen from test";
-                                        $res_spec = $conn->query($sel_specimen);
+                                        $sel_tester_list = "select user_id,user_name from users where status=1 and mobile in (select mobile from login where l_role='TESTER')";
+                                        $res_testers = $conn->query($sel_tester_list);
                                         ?>
-                                        <select class="form-control mb-md" name="specimensel" id="specimensel" onchange="getTests(this.value)" required>
-                                            <option value="" selected>Select specimen</option>
+                                        <select class="form-control mb-md" name="testersel" id="testersel" required>
+                                            <option value="" selected>Select tester</option>
                                             <?php
-                                                while ( $row = $res_spec->fetch_array())
+                                                while ( $row = $res_testers->fetch_array())
                                                     {
-                                                        echo "<option value='$row[0]'>$row[0]</option>";
+                                                        echo "<option value='$row[0]'>$row[1]</option>";
                                                     }
                                             ?>
                                         </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="testname">Test Name <span class="required">*</span></label>
-                                    <div class="col-md-6">
-                                        <select name="testsel" id="testsel" class="form-control mb-md">
-                                            <option value="" selected>Select specimen first</option>
                                     </div>
                                 </div>
 
@@ -275,8 +250,8 @@
                             <footer class="panel-footer">
                                 <div class="row">
                                     <div class="col-sm-9 col-sm-offset-3">
-                                        <input class="btn btn-primary" type="submit" value="Add Test" name="add_test_det">
-                                        <input type="submit" class="btn btn-success" value="Final submit" name="submit_tr" id="submit_tr">
+                                        <input class="btn btn-primary" type="submit" value="Assign Tester" name="assign_tester">
+                                        <input type="reset" class="btn btn-default">
                                     </div>
                                 </div>
                             </footer>
@@ -343,16 +318,17 @@
 </html>
 
 <?php
-if (isset($_POST['add_test_det']))
+if (isset($_POST['assign_tester']))
 {
     $req_id = $_GET['tr_id'];
-    $testsel = $_POST['testsel'];
-    $new_tests = "INSERT INTO assigned_test (testreq_id,test_id) values ('$req_id','$testsel')";
-        $reg = mysqli_query($conn, $new_tests);
+    $testersel = $_POST['testersel'];
+    $assign_tester = "update test_request set status=2,tester_id='$testersel' where tr_id='$req_id'";
+        $reg = mysqli_query($conn, $assign_tester);
 
         if($reg)
         {
-            echo "<script>alert('Test Added Successfully...')</script>";
+            echo "<script>alert('Tester Assigned Successfully...')</script>";
+            echo "<script>window.location='collection_list.php'</script>";
         }
         else
         {

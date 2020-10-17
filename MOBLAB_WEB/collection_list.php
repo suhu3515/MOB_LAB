@@ -97,7 +97,7 @@
                                         </a>
                                     </li>
                                     <li class="nav nav-active">
-                                        <a href="collection_list_demo.php">
+                                        <a href="collection_list.php">
                                             Collection List
                                         </a>
                                     </li>
@@ -203,6 +203,101 @@
             </header>
 
             <!-- start: page -->
+
+            <section class="panel">
+                <header class="panel-heading">
+                    <div class="panel-actions">
+                        <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                        <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                    </div>
+
+                    <h2 class="panel-title">Test Requests</h2>
+                </header>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-striped mb-none" id="tester_table">
+                        <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Tester Name</th>
+                            <th>Test Name</th>
+                            <th>Test Date</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $server_name = "localhost";
+                        $user_name = "root";
+                        $password = "";
+                        $database = "moblab";
+
+                        $conn = new mysqli($server_name, $user_name, $password, $database);
+                        $assgnd_sel = "select ass_id, testreq_id, test_id, status from assigned_test";
+                        $res = $conn->query($assgnd_sel);
+                        while ($row = $res->fetch_array())
+                        {
+                            echo "<tr>";
+                            $test_req = $row[1];
+                            $sel_tr = "select user_id,tester_id, tr_date, status from test_request";
+                            $test_request = $conn->query($sel_tr);
+                            while ($row_tr = $test_request->fetch_array())
+                            {
+                                $usr_sel = "select user_name from users where user_id='$row_tr[0]'";
+                                $usr_res = $conn->query($usr_sel);
+                                while ($usr_row = $usr_res->fetch_array())
+                                {
+                                    $username  = $usr_row[0];
+                                }
+
+                                $testr_sel = "select user_name from users where user_id='$row_tr[1]'";
+                                $testr_res = $conn->query($testr_sel);
+                                while ($tstr_row =  $testr_res->fetch_array())
+                                {
+                                    $testername = $tstr_row[0];
+                                }
+                                $stat_int  = $row[3];
+                                $tr_date = $row_tr[2];
+                            }
+                            $test_sel = "select test_name from test where test_id ='$row[2]'";
+                            $test_res = $conn->query($test_sel);
+                            while ($test_row = $test_res->fetch_array())
+                            {
+                                $testname = $test_row[0];
+                            }
+
+                            //table creation
+                            echo "<td>$username</td>";
+                            echo "<td>$testername</td>";
+                            echo "<td>$testname</td>";
+                            echo "<td>$tr_date</td>";
+
+
+                            // 0 - completed
+                            // 1 - in Progress
+                            switch ($stat_int)
+                            {
+                                case 0:
+                                    echo "<td>completed</td>";
+                                    break;
+                                case 1:
+                                    echo "<td>in Progress</td>";
+                                    break;
+
+                                default:
+                                    echo "<td>Error</td>";
+                                    break;
+                            }
+                            echo "<td><a href='request_details.php?tr_id=$row[0]'><button class='btn btn-primary'>Details</button></a></td>";
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
             <!-- end: page -->
         </section>

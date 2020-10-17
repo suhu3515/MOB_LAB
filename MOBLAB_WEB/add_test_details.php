@@ -117,7 +117,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="collection_list_demo.php">
+                                        <a href="collection_list.php">
                                             Collection List
                                         </a>
                                     </li>

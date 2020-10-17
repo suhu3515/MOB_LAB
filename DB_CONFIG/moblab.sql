@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2020 at 11:54 AM
+-- Generation Time: Oct 17, 2020 at 02:24 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -41,7 +41,8 @@ CREATE TABLE `assigned_test` (
 INSERT INTO `assigned_test` (`ass_id`, `testreq_id`, `test_id`, `status`) VALUES
 (9, 45, 3, 1),
 (10, 45, 10, 1),
-(15, 45, 2, 1);
+(15, 45, 2, 1),
+(17, 46, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -187,8 +188,8 @@ CREATE TABLE `test_request` (
 --
 
 INSERT INTO `test_request` (`tr_id`, `user_id`, `tester_id`, `pre_loc`, `doc_name`, `user_test`, `tr_date`, `pay_stat`, `status`) VALUES
-(45, 46, NULL, 'http://192.168.43.159/moblab/UPLOADS/46_USER_PRESCRIPTION.png', 'SELF', NULL, '2020-10-11', 0, 1),
-(46, 49, NULL, 'http://192.168.43.159/moblab/UPLOADS/49_USER_PRESCRIPTION.png', 'SELF', NULL, '2020-10-12', 0, 2);
+(45, 46, 4, 'http://192.168.43.159/moblab/UPLOADS/46_USER_PRESCRIPTION.png', 'SELF', NULL, '2020-10-11', 0, 2),
+(46, 49, 26, 'http://192.168.43.159/moblab/UPLOADS/49_USER_PRESCRIPTION.png', 'SELF', NULL, '2020-10-12', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -303,7 +304,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assigned_test`
 --
 ALTER TABLE `assigned_test`
-  MODIFY `ass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `feedback`
