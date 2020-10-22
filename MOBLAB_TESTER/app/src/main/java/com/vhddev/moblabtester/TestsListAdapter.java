@@ -84,6 +84,8 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.Test
                 if (v==itemView)
                 {
                     intent = new Intent(context, TestDetailsActivity.class);
+                    intent.putExtra("test_name", testsList.get(getLayoutPosition()).testName);
+                    intent.putExtra("test_specimen", testsList.get(getLayoutPosition()).testSpecimen);
                     context.startActivity(intent);
                     break;
                 }

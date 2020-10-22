@@ -86,6 +86,9 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
                     req_user_id = usersLists.get(getLayoutPosition()).getUserId();
                     intent = new Intent(context, TestsActivity.class);
                     intent.putExtra("userid", String.valueOf(req_user_id));
+                    intent.putExtra("user_name",usersLists.get(getLayoutPosition()).getUserName());
+                    intent.putExtra("user_dob",usersLists.get(getLayoutPosition()).getUserDob());
+                    intent.putExtra("user_loc",usersLists.get(getLayoutPosition()).getUserLoc());
                     context.startActivity(intent);
                     break;
                 }
