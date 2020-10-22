@@ -100,13 +100,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="collection_list.php">
-                                            Collection List
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="pending_collection_demo.php">
-                                            Pending Collection
+                                        <a href="pending_requests_demo.php">
+                                            Pending Requests
                                         </a>
                                     </li>
                                 </ul>
@@ -328,7 +323,7 @@ if (isset($_POST['assign_tester']))
         if($reg)
         {
             echo "<script>alert('Tester Assigned Successfully...')</script>";
-            echo "<script>window.location='collection_list.php'</script>";
+            echo "<script>window.location='test_requests.php'</script>";
         }
         else
         {

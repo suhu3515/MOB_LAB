@@ -97,13 +97,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="collection_list.php">
-                                            Collection List
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="pending_collection_demo.php">
-                                            Pending Collection
+                                        <a href="pending_requests_demo.php">
+                                            Pending Requests
                                         </a>
                                     </li>
                                 </ul>
@@ -258,6 +253,7 @@
                                 echo "<td>Paid</td>";
                             }
 
+
                             // 0 - Declined
                             // 1 - Active
                             // 2 - Tester Assigned
@@ -268,25 +264,25 @@
                             {
                                 case 0:
                                     echo "<td>Rejected</td>";
-                                break;
+                                    break;
                                 case 1:
                                     echo "<td>Active</td>";
-                                break;
+                                    break;
                                 case 2:
                                     echo "<td>Assigned Tester</td>";
-                                break;
+                                    break;
                                 case 3:
                                     echo "<td>Sample Collected</td>";
-                                break;
+                                    break;
                                 case 4:
                                     echo "<td>Generating Report</td>";
-                                break;
+                                    break;
                                 case 5:
                                     echo "<td>Completed</td>";
-                                break;
+                                    break;
                                 default:
                                     echo "<td>Error</td>";
-                                break;
+                                    break;
                             }
                             echo "<td><a href='request_details.php?tr_id=$row[0]'><button class='btn btn-primary'>Details</button></a></td>";
                         }

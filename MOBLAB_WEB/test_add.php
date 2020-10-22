@@ -124,13 +124,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="collection_list.php">
-                                            Collection List
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="pending_collection_demo.php">
-                                            Pending Collection
+                                        <a href="pending_requests_demo.php">
+                                            Pending Requests
                                         </a>
                                     </li>
                                 </ul>

@@ -3,6 +3,7 @@ package com.vhddev.moblab;
 public class URLs
 {
     private static final String ROOT_URL = "http://192.168.43.159/moblab/Api.php?apicall="; //umma
+    //private static final String ROOT_URL = "http://172.20.10.4/moblab/Api.php?apicall="; //j2
     //private static final String ROOT_URL = "http://192.168.0.105/moblab/Api.php?apicall="; //wifi direct
     //private static final String ROOT_URL = "http://192.168.0.105/moblab/Api.php?apicall="; //nox
 
