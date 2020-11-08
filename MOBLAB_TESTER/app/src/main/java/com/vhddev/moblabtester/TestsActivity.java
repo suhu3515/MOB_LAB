@@ -23,9 +23,6 @@ import java.util.List;
 
 public class TestsActivity extends AppCompatActivity {
 
-    private static final String URL_TASKS = "http://192.168.43.159/moblab/tasks.php";
-    //private static final String URL_TASKS = "http://172.20.10.4/moblab/tasks_list.php";
-
     List<Tests> TestDetailsList;
     RecyclerView recycler_view;
     Tester tester = SharedPrefManager.getInstance(this).getTester();
@@ -73,7 +70,7 @@ public class TestsActivity extends AppCompatActivity {
                 params.put("tester_id", String.valueOf(tester.getTid()));
                 params.put("user_id", user_id);
 
-                return requestHandler.sendPostRequest(URL_TASKS,params);
+                return requestHandler.sendPostRequest(URLs.URL_TASKS,params);
             }
 
             ProgressBar progressBar;

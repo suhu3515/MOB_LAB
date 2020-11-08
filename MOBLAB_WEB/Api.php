@@ -189,13 +189,16 @@ if (isset($_GET['apicall']))
 
         case "add_user_test":
 
-            if(isTheseParametersAvailable(array('user_test','user_id')))
+            if(isTheseParametersAvailable(array('user_test','user_id','doctor_name','tr_date')))
             {
                 $user_test = $_POST['user_test'];
                 $logged_user_id3 = $_POST['user_id'];
+                $doc_name = $_POST['doctor_name'];
+                $req_date = $_POST['tr_date'];
+                $status = 1;
 
-                $stmt5 = $conn->prepare("update test_request set user_test=? where user_id=?");
-                $stmt5->bind_param("ss", $user_test,$logged_user_id3);
+                $stmt5 = $conn->prepare("insert into test_request(user_id,doc_name,tr_date,user_test,status) values (?,?,?,?,?)");
+                $stmt5->bind_param("sssss", $logged_user_id3,$doc_name,$req_date,$user_test,$status);
                 if ($stmt5->execute())
                 {
                     $response['error'] = false;
@@ -213,6 +216,252 @@ if (isset($_GET['apicall']))
             }
 
         break;
+
+        case "check_subtests":
+
+            if (isTheseParametersAvailable(array('specimen','test')))
+            {
+                $test_name = $_POST['test'];
+                $test_specimen = $_POST['specimen'];
+                $stmt6 = $conn->prepare("select count(*) from subtests where test_id = (select test_id from test where test_name=? and specimen=?)");
+                $stmt6->bind_param("ss",$test_name,$test_specimen);
+                $stmt6->bind_result($sub_count);
+                if ($stmt6->execute())
+                {
+                    while ($stmt6->fetch())
+                    {
+                        if ($sub_count>0)
+                        {
+                            $response['subtests'] = true;
+                            $response['subtests_count'] = $sub_count;
+                        }
+                        else
+                        {
+                            $response['subtests'] = false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                $response['error'] = true;
+                $response['message'] = 'required parameters are not available';
+            }
+        break;
+
+        case "add_subtest_result":
+
+            if (isTheseParametersAvailable(array('subname','st_value','test_name','test_specimen','tester_id','tester_id','subtest_num')))
+            {
+                $subtest_name = $_POST['subname'];
+                $svalue = $_POST['st_value'];
+                $specimen = $_POST['test_specimen'];
+                $tname = $_POST['test_name'];
+                $tester = $_POST['tester_id'];
+                $user_id1 = $_POST['user_id'];
+                $subtest_no = $_POST['subtest_num'];
+
+                switch ($subtest_no)
+                {
+                    case 1:
+                        $field_name = "observ_1";
+                        $first_insert = true;
+                        break;
+
+                    case 2 :
+                        $field_name = "observ_2";
+                        break;
+
+                    case 3:
+                        $field_name = "observ_3";
+                        break;
+
+                    case 4:
+                        $field_name = "observ_4";
+                        break;
+
+                    case 5:
+                        $field_name = "observ_5";
+                        break;
+
+                    case 6:
+                        $field_name = "observ_6";
+                        break;
+
+                    case 7:
+                        $field_name = "observ_7";
+                        break;
+
+                    case 8:
+                        $field_name = "observ_8";
+                        break;
+
+                    case 9:
+                        $field_name = "observ_9";
+                        break;
+
+                    case 10:
+                        $field_name = "observ_10";
+                        break;
+
+                    default:
+                        $response['error'] = true;
+                }
+
+                $stmt11 = "select * from results where asgn_test_id in (select ass_id from assigned_test where test_id in (select test_id from test where test_name='$tname' and specimen='$specimen') and (select tr_id from test_request where tester_id='$tester' and user_id='$user_id1' and status=2))";
+                $res_stmt11 = mysqli_query($conn, $stmt11);
+                if ($res_stmt11)
+                {
+                    if (mysqli_num_rows($res_stmt11)>0)
+                    {
+                        $stmt12 = "select sub_id from subtests where sub_name='$subtest_name' and test_id in (select test_id from test where test_name='$tname' and specimen='$specimen')";
+                        $res_stmt12 = mysqli_query($conn,$stmt12);
+                        if ($res_stmt12)
+                        {
+                            while ($row_stmt12 = mysqli_fetch_array($res_stmt12))
+                            {
+                                $subtest_id = $row_stmt12[0];
+                                $stmt13 = "insert into observation(observ_value,subtest_id) values ('$svalue','$subtest_id')";
+                                $res_stmt13 = mysqli_query($conn,$stmt13);
+                                if ($stmt13)
+                                {
+                                    $stmt14 = "select LAST_INSERT_ID()";
+                                    $res_stmt14 = mysqli_query($conn,$stmt14);
+                                    while ($row_stmt14 = mysqli_fetch_array($res_stmt14))
+                                    {
+                                        $obser_id = $row_stmt14[0];
+                                        $stmt15 = "update results set $field_name = '$obser_id' where asgn_test_id in (select ass_id from assigned_test where test_id in (select test_id from test where test_name='$tname' and specimen='$specimen') and (select tr_id from test_request where tester_id='$tester' and user_id='$user_id1' and status=2))";
+                                        $res_stmt15 = mysqli_query($conn,$stmt15);
+                                        if ($res_stmt15)
+                                        {
+                                            $response['error'] = false;
+                                            $response['message'] = "Result added";
+                                        }
+                                        else
+                                        {
+                                            $response['error'] = true;
+                                            $response['message'] = "Cannot add result..";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if ($first_insert == true)
+                        {
+                            $stmt9 = "select sub_id from subtests where sub_name='$subtest_name' and test_id in (select test_id from test where test_name='$tname' and specimen='$specimen')";
+                            $res_stmt9 = mysqli_query($conn,$stmt9);
+                            if ($res_stmt9)
+                            {
+                                while ($row_stmt9 = mysqli_fetch_array($res_stmt9))
+                                {
+                                    $subtest_id = $row_stmt9[0];
+                                    $stmt7 = "insert into observation(observ_value,subtest_id) values ('$svalue','$subtest_id')";
+                                    $res_stmt7 = mysqli_query($conn,$stmt7);
+                                    if ($res_stmt7)
+                                    {
+                                        $stmt8 = "select LAST_INSERT_ID()";
+                                        $res_stmt8 = mysqli_query($conn,$stmt8);
+                                        if ($res_stmt8)
+                                        {
+                                            while($row_stmt8 = mysqli_fetch_array($res_stmt8))
+                                            {
+                                                $obser_id = $row_stmt8[0];
+                                                $stmt10  = "insert into results(asgn_test_id, observ_1) values ((select ass_id from assigned_test where test_id in (select test_id from test where test_name='$tname' and specimen='$specimen') and (select tr_id from test_request where tester_id='$tester' and user_id='$user_id1' and status=2)),$obser_id)";
+                                                $res_stmt10  = mysqli_query($conn, $stmt10);
+                                                if ($res_stmt10)
+                                                {
+                                                    $response['error'] = false;
+                                                    $response['message'] = "Result added";
+                                                    $first_insert = false;
+                                                }
+                                                else
+                                                {
+                                                    $response['error'] = true;
+                                                    $response['message'] = "find it";
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    $response['error'] = true;
+                    $response['message'] = "Some error occurred..";
+                }
+            }
+            else
+            {
+                $response['error'] = true;
+                $response['message'] = 'required parameters are not available';
+            }
+
+        break;
+
+        case "test_result":
+
+        if (isTheseParametersAvailable(array('test_name','test_specimen','tester_id','user_id','t_value')))
+        {
+            $test_name2 = $_POST['test_name'];
+            $test_specimen2 = $_POST['test_specimen'];
+            $tester_id = $_POST['tester_id'];
+            $user_id2 = $_POST['user_id'];
+            $test_value = $_POST['t_value'];
+
+            $stmt16 = "select * from results where asgn_test_id in (select ass_id from assigned_test where test_id in (select test_id from test where test_name='$test_name2' and specimen='$test_specimen2') and (select tr_id from test_request where tester_id='$tester_id' and user_id='$user_id2' and status=2))";
+            $res_stmt16 = mysqli_query($conn,$stmt16);
+            if ($res_stmt16)
+            {
+                if (mysqli_num_rows($res_stmt16) > 0)
+                {
+                    $response['error'] = true;
+                    $response['message'] = "Result already added.";
+                }
+                else
+                {
+                    $stmt17 = "insert into observation(observ_value) values ('$test_value')";
+                    $res_stmt17 = mysqli_query($conn,$stmt17);
+                    if ($res_stmt17)
+                    {
+                        $stmt18 = "select LAST_INSERT_ID()";
+                        $res_stmt18 = mysqli_query($conn,$stmt18);
+                        if ($res_stmt18)
+                        {
+                            while ($row_stmt18 = mysqli_fetch_array($res_stmt18))
+                            {
+                                $observation_id = $row_stmt18[0];
+                                $stmt19 = "insert into results(asgn_test_id,observ_1) values((select ass_id from assigned_test where test_id in (select test_id from test where test_name='$test_name2' and specimen ='$test_specimen2') and testreq_id in (select tr_id from test_request where tester_id='$tester_id' and user_id='$user_id2' and status=2)),$observation_id)";
+                                $res_stmt19 = mysqli_query($conn,$stmt19);
+                                if ($res_stmt19)
+                                {
+                                    $response['error'] = false;
+                                    $response['message'] = "Successfully added result";
+                                }
+                                else
+                                {
+                                    $response['error'] = true;
+                                    $response['message'] = "Error occurred in insertion";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            $response['error'] = true;
+            $response['message'] = 'required parameters are not available';
+        }
+
+        break;
+
 
         default:
             $response['error'] = true;

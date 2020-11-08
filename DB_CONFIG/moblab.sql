@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2020 at 11:58 PM
+-- Generation Time: Nov 08, 2020 at 04:02 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -39,9 +39,9 @@ CREATE TABLE `assigned_test` (
 --
 
 INSERT INTO `assigned_test` (`ass_id`, `testreq_id`, `test_id`, `status`) VALUES
-(18, 45, 9, 1),
-(19, 45, 3, 1),
-(20, 48, 4, 1);
+(23, 56, 2, 1),
+(24, 56, 3, 1),
+(25, 57, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -76,9 +76,9 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`login_id`, `mobile`, `password`, `l_role`) VALUES
 (4, 9567105860, 'abcde', 'TESTER'),
 (26, 9895989598, '12345', 'TESTER'),
-(49, 9446476923, '121212', 'USER'),
 (50, 9605567272, '123443', 'USER'),
-(51, 9446476922, '121221', 'USER');
+(53, 9633058949, '123321', 'USER'),
+(54, 7736918949, '12312312', 'USER');
 
 -- --------------------------------------------------------
 
@@ -88,9 +88,18 @@ INSERT INTO `login` (`login_id`, `mobile`, `password`, `l_role`) VALUES
 
 CREATE TABLE `observation` (
   `obs_id` int(11) NOT NULL,
-  `subtest_id` int(11) NOT NULL,
-  `observ_value` int(11) DEFAULT NULL
+  `subtest_id` int(11) DEFAULT NULL,
+  `observ_value` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `observation`
+--
+
+INSERT INTO `observation` (`obs_id`, `subtest_id`, `observ_value`) VALUES
+(34, NULL, '100 mg'),
+(35, 8, '100 '),
+(36, 8, '120');
 
 -- --------------------------------------------------------
 
@@ -114,6 +123,14 @@ CREATE TABLE `results` (
   `remarks` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `results`
+--
+
+INSERT INTO `results` (`res_id`, `asgn_test_id`, `observ_1`, `observ_2`, `observ_3`, `observ_4`, `observ_5`, `observ_6`, `observ_7`, `observ_8`, `observ_9`, `observ_10`, `remarks`) VALUES
+(16, 23, 34, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, 24, 35, 36, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -132,12 +149,8 @@ CREATE TABLE `subtests` (
 --
 
 INSERT INTO `subtests` (`sub_id`, `test_id`, `sub_name`, `ref_range`) VALUES
-(1, 3, 'Blood Count', '100-120'),
-(2, 2, 'stest1', '120 - 200 mg'),
-(3, 2, 'aksgbodbsj', '200-300'),
-(4, 3, 'Blood Count', '200-300'),
-(5, 3, 'Blood Count', '100-120'),
-(6, 9, 'COUNT1', '100-300');
+(8, 3, 'WBC Count', '100-120'),
+(9, 3, 'HBC Count', '100-300');
 
 -- --------------------------------------------------------
 
@@ -178,7 +191,7 @@ CREATE TABLE `test_request` (
   `tester_id` int(11) DEFAULT NULL,
   `pre_loc` text DEFAULT NULL,
   `doc_name` varchar(25) DEFAULT NULL,
-  `user_test` varchar(50) DEFAULT NULL,
+  `user_test` text DEFAULT NULL,
   `tr_date` date NOT NULL,
   `pay_stat` int(11) NOT NULL DEFAULT 0,
   `status` int(11) NOT NULL DEFAULT 1
@@ -189,8 +202,9 @@ CREATE TABLE `test_request` (
 --
 
 INSERT INTO `test_request` (`tr_id`, `user_id`, `tester_id`, `pre_loc`, `doc_name`, `user_test`, `tr_date`, `pay_stat`, `status`) VALUES
-(45, 46, 4, 'http://192.168.43.159/moblab/UPLOADS/46_USER_PRESCRIPTION.png', 'SELF', NULL, '2020-10-11', 0, 2),
-(48, 50, 4, 'http://192.168.43.159/moblab/UPLOADS/50_USER_PRESCRIPTION.png', 'SELF', NULL, '2020-10-22', 0, 2);
+(56, 53, 4, NULL, 'zuma', 'fnvodsl\'jekwsdfnadsjfbaflrdhujksldncelsa\ndksfnldm;dsaklf\nsad;jfspdalfmjpdosaf\nsadiofhoispledkfase\ndsopfhwepdoifjfljrig,\nrpokpejpfiorgjpfplsp\n', '2020-11-01', 0, 2),
+(57, 54, 4, 'http://192.168.43.159/moblab/UPLOADS/54_USER_PRESCRIPTION.png', 'dr lys', NULL, '2020-11-04', 0, 2),
+(58, 53, NULL, 'http://192.168.43.159/moblab/UPLOADS/53_USER_PRESCRIPTION.png', 'Dr aman ', NULL, '2020-11-08', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -218,10 +232,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `user_name`, `dob`, `h_name`, `place`, `pin`, `mobile`, `email`, `location`, `status`) VALUES
 (4, 'aslam k', '1998-07-17', 'kallingal house', 'edappal', 679590, 9567105860, 'aslamkedpl12@gmail.com', NULL, 1),
 (26, 'ashwini m', '1995-01-10', 'Valathel house', 'mavoor', 679581, 9895989598, 'ashwiniach9020@gmail.com', NULL, 1),
-(46, 'suhail', '1998-10-28', 'valathel', 'maranchery', 679581, 9633058949, 'suhu3515@gmail.com', 'https://maps.google.com/maps?q=10.74035068,75.97471365', 1),
-(49, 'suhail', '1998-10-28', 'valathel', 'maranchery', 679581, 9446476922, 'std5b1237@greenvalleycampus.com', 'https://maps.google.com/maps?q=10.74040119,75.9751625', 1),
 (50, 'mujahid', '1998-12-01', 'karuthankattil', 'niramaruthur', 676109, 9605567272, 'mujahid@gmail.com', 'https://maps.google.com/maps?q=10.7401914,75.97461624', 1),
-(51, 'sahla', '2000-06-03', 'va', 'maranchery', 679588, 9446476922, 'jaseelasakkeer123@gmail.com', NULL, 1);
+(53, 'Suhail Ak', '1998-10-28', 'valathel', 'maranchery', 679581, 9633058949, 'suhu3515@gmail.com', 'https://maps.google.com/maps?q=10.73999162,75.97491232', 1),
+(54, 'aslam k', '1998-07-17', 'kalingl house', 'edappal', 679576, 7736918949, 'aslamkedpl12@gmail.com', NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -307,7 +320,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assigned_test`
 --
 ALTER TABLE `assigned_test`
-  MODIFY `ass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -319,25 +332,25 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `observation`
 --
 ALTER TABLE `observation`
-  MODIFY `obs_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `obs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `res_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `res_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `subtests`
 --
 ALTER TABLE `subtests`
-  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `test`
@@ -349,13 +362,13 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT for table `test_request`
 --
 ALTER TABLE `test_request`
-  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Constraints for dumped tables

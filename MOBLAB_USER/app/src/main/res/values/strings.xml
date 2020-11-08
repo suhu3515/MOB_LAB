@@ -37,7 +37,7 @@
     <string name="txt_division">= = = = = OR = = = = =</string>
     <string name="txt_select_image">SELECT IMAGE</string>
     <string name="txt_upload_image">UPLOAD IMAGE</string>
-    <string name="txt_seltest_caption">Enter the test you want to do</string>
+    <string name="txt_seltest_caption">Please select the test you want to do</string>
     <string name="txt_specimen">SPECIMEN :</string>
     <string name="txt_test">TEST :</string>
     <string name="txt_submit_test">SUBMIT TEST</string>
@@ -61,4 +61,6 @@
     <string name="txt_view">VIEW</string>
     <string name="txt_tests">TESTS</string>
     <string name="view_tests_caption">you can view the tests \nwe provide</string>
+    <string name="add_test">add test</string>
+    <string name="submit">submit</string>
 </resources>

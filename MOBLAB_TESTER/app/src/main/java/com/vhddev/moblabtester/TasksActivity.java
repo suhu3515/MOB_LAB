@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.Volley;
 
@@ -15,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -22,8 +24,7 @@ import java.util.List;
 
 public class TasksActivity extends AppCompatActivity {
 
-    private static final String URL_TASKS_LIST = "http://192.168.43.159/moblab/tasks_list.php";
-    //private static final String URL_TASKS_LIST = "http://172.20.10.4/moblab/tasks_list.php";
+
 
     List<UsersList> usersLists;
     RecyclerView recyclerView;
@@ -33,6 +34,8 @@ public class TasksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks);
+
+        setTitle("Assigned Tasks");
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -61,7 +64,7 @@ public class TasksActivity extends AppCompatActivity {
                 HashMap<String, String> params  = new HashMap<>();
                 params.put("tester_id", String.valueOf(tester1.getTid()));
 
-                return requestHandler.sendPostRequest(URL_TASKS_LIST, params);
+                return requestHandler.sendPostRequest(URLs.URL_TASKS_LIST, params);
             }
 
             @Override
@@ -89,8 +92,13 @@ public class TasksActivity extends AppCompatActivity {
                                 users.getString("userdob"),
                                 users.getString("userloc")
                         ));
+
                     }
 
+                    if (usersLists.isEmpty())
+                    {
+                        Toast.makeText(TasksActivity.this, "No Assigned Tasks", Toast.LENGTH_LONG).show();
+                    }
 
                     UsersListAdapter adapter = new UsersListAdapter(TasksActivity.this, usersLists);
                     recyclerView.setAdapter(adapter);

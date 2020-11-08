@@ -229,9 +229,10 @@
                         $user_name = "root";
                         $password = "";
                         $database = "moblab";
+                        $today_date = date('Y-m-d');
 
                         $conn = new mysqli($server_name, $user_name, $password, $database);
-                        $tr_sel = "select tr_id, user_id, doc_name, tr_date, pay_stat,status from test_request";
+                        $tr_sel = "select tr_id, user_id, doc_name, tr_date, pay_stat,status from test_request where tr_date='$today_date'";
                         $res = $conn->query($tr_sel);
                         while ($row = $res->fetch_array())
                         {

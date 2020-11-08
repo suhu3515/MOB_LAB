@@ -92,10 +92,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
                     context.startActivity(intent);
                     break;
                 }
-
             }
-
         }
-
     }
 }
