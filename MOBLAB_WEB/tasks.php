@@ -15,7 +15,7 @@ if (mysqli_connect_errno())
 
 $tester_id = $_POST['tester_id'];
 $user_id = $_POST['user_id'];
-$stmt = "select test_id from assigned_test where status=1 and testreq_id in(select tr_id from test_request where user_id='$user_id' and tester_id='$tester_id' and status=2)";
+$stmt = "select test_id from assigned_test where status=1 and testreq_id in(select tr_id from test_request where user_id='$user_id' and tester_id='$tester_id' and status=2 or status=3 or status=4)";
 $res_assgn = mysqli_query($conn,$stmt);
 $tasks = array();
 $temp = array();

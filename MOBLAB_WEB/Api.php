@@ -130,7 +130,7 @@ if (isset($_GET['apicall']))
                 $doctor_name = $_POST['doc_name'];
                 $testreq_date = $_POST['tr_date'];
 
-                $stmt3 = $conn->prepare("SELECT * FROM test_request where user_id=? and status=1");
+                $stmt3 = $conn->prepare("SELECT * FROM test_request where user_id=? and status=1 or status<>5");
                 $stmt3->bind_param("s",$logged_user_id2);
                 $stmt3->execute();
                 $stmt3->store_result();
@@ -462,6 +462,66 @@ if (isset($_GET['apicall']))
 
         break;
 
+        case "check_status":
+
+            if (isTheseParametersAvailable(array('user_id','tester_id')))
+            {
+                $tester_id2 = $_POST['tester_id'];
+                $user_id3 = $_POST['user_id'];
+
+                $stmt20 = "select pay_stat,status from test_request where user_id='$user_id3' and tester_id='$tester_id2'";
+                $res_stmt20 = mysqli_query($conn,$stmt20);
+                if ($res_stmt20)
+                {
+                    while ($row_stmt20 = mysqli_fetch_array($res_stmt20))
+                    {
+                        $response['error'] = false;
+                        $response['pay_stat'] = $row_stmt20[0];
+                        $response['tr_status'] = $row_stmt20[1];
+                    }
+                }
+                else
+                {
+                    $response['error'] = true;
+                    $response['message'] = "failed to get status";
+                }
+            }
+            else
+            {
+                $response['error'] = true;
+                $response['message'] = 'required parameters are not available';
+            }
+
+        break;
+
+        case "update_status":
+
+            if (isTheseParametersAvailable(array('user_id','tester_id','payment','tr_stat')))
+            {
+                $user_id4 = $_POST['user_id'];
+                $tester_id3 = $_POST['tester_id'];
+                $payment = $_POST['payment'];
+                $tr_status = $_POST['tr_stat'];
+
+                $stmt21 = "update test_request set pay_stat='$payment',status='$tr_status' where user_id='$user_id4' and tester_id='$tester_id3' and status<>5";
+                $res_stmt21 = mysqli_query($conn,$stmt21);
+                if ($res_stmt21)
+                {
+                    $response['error'] = false;
+                    $response['message'] = "updated status successfully...";
+                }
+                else
+                {
+                    $response['error'] = true;
+                    $response['message'] = "failed to update status";
+                }
+            }
+            else
+            {
+                $response['error'] = true;
+                $response['message'] = 'required parameters are not available';
+            }
+        break;
 
         default:
             $response['error'] = true;

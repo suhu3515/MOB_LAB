@@ -7,8 +7,9 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
     $doc_name = $_POST['doctor_name'];
     $tr_date = $_POST['test_date'];
     $tr_status = 1;
+    $img_no = 3;
 
-    $file_name = $user_id . '_USER_PRESCRIPTION';
+    $file_name = $user_id . '_USER_PRESCRIPTION_' . $img_no;
 
     $path = "UPLOADS/$file_name.png";
 
@@ -21,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         if (mysqli_query($conn, $sql)) {
             file_put_contents($path, base64_decode($image));
             echo "Successfully uploaded.";
+            $img_no++;
         }
     }
     else

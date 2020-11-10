@@ -1,6 +1,7 @@
 package com.vhddev.moblabtester;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,26 +16,42 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.HashMap;
 
 public class TestDetailsActivity extends AppCompatActivity {
 
     String test_name, test_spec,user_name,user_loc,user_dob;
-    int user_id,sub_count;
-    TextView tv_username,tv_userdob,tv_userloc,tv_test_name,tv_test_spec;
-    Button btn_add_result;
+    int user_id,sub_count,tester_id,pay,stat;
+    TextView tv_username,tv_userdob,tv_userloc,tv_test_name,tv_test_spec,tv_test_pay,tv_test_status;
+    Button btn_add_result,btn_update_status;
     boolean isSubTestExists,isResultsAdded;
+    Tester tester;
+    SwipeRefreshLayout pullToRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_details);
 
+        pullToRefresh = findViewById(R.id.pulltorefresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                refreshData();
+                pullToRefresh.setRefreshing(false);
+            }
+        });
+
         test_name = getIntent().getExtras().getString("test_name");
         test_spec = getIntent().getExtras().getString("test_specimen");
         isResultsAdded = getIntent().getExtras().getBoolean("results_added");
 
         setTitle("Test Details");
+
+        tester = SharedPrefManager.getInstance(this).getTester();
+        tester_id = tester.getTid();
 
         SharedPreferences sharedPreferences = getSharedPreferences("user_details",MODE_PRIVATE);
         user_name = sharedPreferences.getString("user_name", null);
@@ -48,6 +65,9 @@ public class TestDetailsActivity extends AppCompatActivity {
         tv_test_name = findViewById(R.id.text_testn_val);
         tv_test_spec = findViewById(R.id.text_testspec_val);
         btn_add_result = findViewById(R.id.btn_generate_res);
+        tv_test_pay = findViewById(R.id.text_testpay_val);
+        tv_test_status = findViewById(R.id.text_teststat_val);
+        btn_update_status = findViewById(R.id.btn_update_stat);
 
         tv_username.setText(user_name);
         tv_userdob.setText(user_dob);
@@ -60,6 +80,7 @@ public class TestDetailsActivity extends AppCompatActivity {
         }
 
         checkForSubTests();
+        checkStatus();
 
         tv_userloc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +122,104 @@ public class TestDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btn_update_status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent statusIntent = new Intent(TestDetailsActivity.this,UpdateStatusActivity.class);
+                startActivity(statusIntent);
+
+            }
+        });
+
+    }
+
+    private void refreshData()
+    {
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+    }
+
+    private void checkStatus()
+    {
+        class CheckStatus extends AsyncTask<Void, Void, String>
+        {
+
+            @Override
+            protected String doInBackground(Void... voids) {
+
+                RequestHandler requestHandler = new RequestHandler();
+
+                HashMap<String, String> params = new HashMap<>();
+                params.put("tester_id", String.valueOf(tester_id));
+                params.put("user_id", String.valueOf(user_id));
+
+                return requestHandler.sendPostRequest(URLs.URL_CHECK_STATUS,params);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+
+                try
+                {
+                    JSONObject object = new JSONObject(s);
+                    if (object.getBoolean("error") == false)
+                    {
+                           pay = Integer.parseInt(object.getString("pay_stat"));
+                           stat = Integer.parseInt(object.getString("tr_status"));
+
+                           if (pay == 0)
+                           {
+                               tv_test_pay.setText("NOT PAID");
+                           }
+                           if (pay == 1)
+                           {
+                               tv_test_pay.setText("PAID");
+                           }
+
+                           switch (stat)
+                           {
+                               case 2:
+
+                                   tv_test_status.setText("ASSIGNED TESTER");
+                                   break;
+
+                               case 3:
+
+                                   tv_test_status.setText("SAMPLE COLLECTED");
+                                   break;
+
+                               case 4:
+
+                                   tv_test_status.setText("GENERATING REPORT");
+                                   btn_add_result.setEnabled(true);
+                                   break;
+
+                               case 5:
+
+                                   tv_test_status.setText("COMPLETED");
+                                   break;
+
+                               default:
+
+                                   Toast.makeText(TestDetailsActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                                   break;
+                           }
+
+                    }
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+        CheckStatus cs = new CheckStatus();
+        cs.execute();
     }
 
     private void checkForSubTests()

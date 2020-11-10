@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2020 at 04:02 PM
+-- Generation Time: Nov 10, 2020 at 03:32 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -33,15 +33,6 @@ CREATE TABLE `assigned_test` (
   `test_id` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `assigned_test`
---
-
-INSERT INTO `assigned_test` (`ass_id`, `testreq_id`, `test_id`, `status`) VALUES
-(23, 56, 2, 1),
-(24, 56, 3, 1),
-(25, 57, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -77,8 +68,7 @@ INSERT INTO `login` (`login_id`, `mobile`, `password`, `l_role`) VALUES
 (4, 9567105860, 'abcde', 'TESTER'),
 (26, 9895989598, '12345', 'TESTER'),
 (50, 9605567272, '123443', 'USER'),
-(53, 9633058949, '123321', 'USER'),
-(54, 7736918949, '12312312', 'USER');
+(53, 9633058949, '123321', 'USER');
 
 -- --------------------------------------------------------
 
@@ -91,15 +81,6 @@ CREATE TABLE `observation` (
   `subtest_id` int(11) DEFAULT NULL,
   `observ_value` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `observation`
---
-
-INSERT INTO `observation` (`obs_id`, `subtest_id`, `observ_value`) VALUES
-(34, NULL, '100 mg'),
-(35, 8, '100 '),
-(36, 8, '120');
 
 -- --------------------------------------------------------
 
@@ -122,14 +103,6 @@ CREATE TABLE `results` (
   `observ_10` int(11) DEFAULT NULL,
   `remarks` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `results`
---
-
-INSERT INTO `results` (`res_id`, `asgn_test_id`, `observ_1`, `observ_2`, `observ_3`, `observ_4`, `observ_5`, `observ_6`, `observ_7`, `observ_8`, `observ_9`, `observ_10`, `remarks`) VALUES
-(16, 23, 34, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(17, 24, 35, 36, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -197,15 +170,6 @@ CREATE TABLE `test_request` (
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `test_request`
---
-
-INSERT INTO `test_request` (`tr_id`, `user_id`, `tester_id`, `pre_loc`, `doc_name`, `user_test`, `tr_date`, `pay_stat`, `status`) VALUES
-(56, 53, 4, NULL, 'zuma', 'fnvodsl\'jekwsdfnadsjfbaflrdhujksldncelsa\ndksfnldm;dsaklf\nsad;jfspdalfmjpdosaf\nsadiofhoispledkfase\ndsopfhwepdoifjfljrig,\nrpokpejpfiorgjpfplsp\n', '2020-11-01', 0, 2),
-(57, 54, 4, 'http://192.168.43.159/moblab/UPLOADS/54_USER_PRESCRIPTION.png', 'dr lys', NULL, '2020-11-04', 0, 2),
-(58, 53, NULL, 'http://192.168.43.159/moblab/UPLOADS/53_USER_PRESCRIPTION.png', 'Dr aman ', NULL, '2020-11-08', 0, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -233,8 +197,7 @@ INSERT INTO `users` (`user_id`, `user_name`, `dob`, `h_name`, `place`, `pin`, `m
 (4, 'aslam k', '1998-07-17', 'kallingal house', 'edappal', 679590, 9567105860, 'aslamkedpl12@gmail.com', NULL, 1),
 (26, 'ashwini m', '1995-01-10', 'Valathel house', 'mavoor', 679581, 9895989598, 'ashwiniach9020@gmail.com', NULL, 1),
 (50, 'mujahid', '1998-12-01', 'karuthankattil', 'niramaruthur', 676109, 9605567272, 'mujahid@gmail.com', 'https://maps.google.com/maps?q=10.7401914,75.97461624', 1),
-(53, 'Suhail Ak', '1998-10-28', 'valathel', 'maranchery', 679581, 9633058949, 'suhu3515@gmail.com', 'https://maps.google.com/maps?q=10.73999162,75.97491232', 1),
-(54, 'aslam k', '1998-07-17', 'kalingl house', 'edappal', 679576, 7736918949, 'aslamkedpl12@gmail.com', NULL, 1);
+(53, 'Suhail Ak', '1998-10-28', 'valathel', 'maranchery', 679581, 9633058949, 'suhu3515@gmail.com', 'https://maps.google.com/maps?q=10.73999162,75.97491232', 1);
 
 --
 -- Indexes for dumped tables

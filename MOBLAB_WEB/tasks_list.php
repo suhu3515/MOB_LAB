@@ -21,7 +21,7 @@ while($row_assgn = mysqli_fetch_array($res_assgn))
 {
     $temp = array();
 
-    $stmt2 = "select user_id from test_request where status=2 and tester_id='$tester_id' and tr_id='$row_assgn[0]'";
+    $stmt2 = "select user_id from test_request where status=2 or status=3 or status=4 and tester_id='$tester_id' and tr_id='$row_assgn[0]'";
     $res_tr = mysqli_query($conn,$stmt2);
     while($row_tr = mysqli_fetch_array($res_tr))
     {
