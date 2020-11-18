@@ -2,8 +2,8 @@ package com.vhddev.moblabtester;
 
 public class URLs
 {
-    //private static final String ROOT_URL = "http://192.168.43.159/moblab/";
-    private static final String ROOT_URL = "http://192.168.43.123/moblab/";
+    private static final String ROOT_URL = "http://192.168.43.159/moblab/";
+    //private static final String ROOT_URL = "http://192.168.43.123/moblab/";
     //private static final String ROOT_URL = "http://192.168.43.159/moblab/";
 
     public static final String URL_GET_SUBTEST = ROOT_URL + "get_subtests.php";

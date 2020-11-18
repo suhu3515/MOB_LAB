@@ -127,10 +127,19 @@ public class UpdateStatusActivity extends AppCompatActivity {
                 RequestHandler requestHandler = new RequestHandler();
 
                 HashMap<String, String> params = new HashMap<>();
-                params.put("user_id", String.valueOf(user_id));
-                params.put("tester_id", String.valueOf(tester_id));
-                params.put("payment", String.valueOf(pay_stat));
-                params.put("tr_stat", String.valueOf(tr_stat));
+
+                if(tr_stat == 5)
+                {
+                    showAlert();
+                }
+                else
+                {
+
+                    params.put("user_id", String.valueOf(user_id));
+                    params.put("tester_id", String.valueOf(tester_id));
+                    params.put("payment", String.valueOf(pay_stat));
+                    params.put("tr_stat", String.valueOf(tr_stat));
+                }
 
                 return requestHandler.sendPostRequest(URLs.URL_UPDATE_STATUS,params);
             }
@@ -160,5 +169,10 @@ public class UpdateStatusActivity extends AppCompatActivity {
         }
         UpdateStatus us = new UpdateStatus();
         us.execute();
+    }
+
+    private void showAlert()
+    {
+
     }
 }

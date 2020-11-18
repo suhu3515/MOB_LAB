@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Pending Collection | MOBLAB</title>
+    <title>All Requests | MOBLAB</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -97,7 +97,7 @@
                                         </a>
                                     </li>
                                     <li class="nav nav-active">
-                                        <a href="pending_requests_demo.php">
+                                        <a href="all_requests.php">
                                             Pending Requests
                                         </a>
                                     </li>
@@ -146,13 +146,8 @@
                                 </a>
                                 <ul class="nav nav-children">
                                     <li>
-                                        <a href="report_list_demo.php">
+                                        <a href="report_list.php">
                                             View Reports
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="pending_reports_demo.php">
-                                            Pending Reports
                                         </a>
                                     </li>
                                 </ul>
@@ -193,7 +188,7 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Pending Collection</h2>
+                <h2>All Requests</h2>
 
             </header>
 

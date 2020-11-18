@@ -308,7 +308,7 @@ if (isset($_GET['apicall']))
                         $response['error'] = true;
                 }
 
-                $stmt11 = "select * from results where asgn_test_id in (select ass_id from assigned_test where test_id in (select test_id from test where test_name='$tname' and specimen='$specimen') and (select tr_id from test_request where tester_id='$tester' and user_id='$user_id1' and status=2))";
+                $stmt11 = "select * from results where asgn_test_id in (select ass_id from assigned_test where test_id in (select test_id from test where test_name='$tname' and specimen='$specimen') and (select tr_id from test_request where tester_id='$tester' and user_id='$user_id1' and status=4))";
                 $res_stmt11 = mysqli_query($conn, $stmt11);
                 if ($res_stmt11)
                 {
@@ -330,7 +330,7 @@ if (isset($_GET['apicall']))
                                     while ($row_stmt14 = mysqli_fetch_array($res_stmt14))
                                     {
                                         $obser_id = $row_stmt14[0];
-                                        $stmt15 = "update results set $field_name = '$obser_id' where asgn_test_id in (select ass_id from assigned_test where test_id in (select test_id from test where test_name='$tname' and specimen='$specimen') and (select tr_id from test_request where tester_id='$tester' and user_id='$user_id1' and status=2))";
+                                        $stmt15 = "update results set $field_name = '$obser_id' where asgn_test_id in (select ass_id from assigned_test where test_id in (select test_id from test where test_name='$tname' and specimen='$specimen') and (select tr_id from test_request where tester_id='$tester' and user_id='$user_id1' and status=4))";
                                         $res_stmt15 = mysqli_query($conn,$stmt15);
                                         if ($res_stmt15)
                                         {
@@ -369,7 +369,7 @@ if (isset($_GET['apicall']))
                                             while($row_stmt8 = mysqli_fetch_array($res_stmt8))
                                             {
                                                 $obser_id = $row_stmt8[0];
-                                                $stmt10  = "insert into results(asgn_test_id, observ_1) values ((select ass_id from assigned_test where test_id in (select test_id from test where test_name='$tname' and specimen='$specimen') and (select tr_id from test_request where tester_id='$tester' and user_id='$user_id1' and status=2)),$obser_id)";
+                                                $stmt10  = "insert into results(asgn_test_id, observ_1) values ((select ass_id from assigned_test where test_id in (select test_id from test where test_name='$tname' and specimen='$specimen') and (select tr_id from test_request where tester_id='$tester' and user_id='$user_id1' and status=4)),$obser_id)";
                                                 $res_stmt10  = mysqli_query($conn, $stmt10);
                                                 if ($res_stmt10)
                                                 {
@@ -414,7 +414,7 @@ if (isset($_GET['apicall']))
             $user_id2 = $_POST['user_id'];
             $test_value = $_POST['t_value'];
 
-            $stmt16 = "select * from results where asgn_test_id in (select ass_id from assigned_test where test_id in (select test_id from test where test_name='$test_name2' and specimen='$test_specimen2') and (select tr_id from test_request where tester_id='$tester_id' and user_id='$user_id2' and status=2))";
+            $stmt16 = "select * from results where asgn_test_id in (select ass_id from assigned_test where test_id in (select test_id from test where test_name='$test_name2' and specimen='$test_specimen2') and (select tr_id from test_request where tester_id='$tester_id' and user_id='$user_id2' and status=4))";
             $res_stmt16 = mysqli_query($conn,$stmt16);
             if ($res_stmt16)
             {
@@ -436,7 +436,7 @@ if (isset($_GET['apicall']))
                             while ($row_stmt18 = mysqli_fetch_array($res_stmt18))
                             {
                                 $observation_id = $row_stmt18[0];
-                                $stmt19 = "insert into results(asgn_test_id,observ_1) values((select ass_id from assigned_test where test_id in (select test_id from test where test_name='$test_name2' and specimen ='$test_specimen2') and testreq_id in (select tr_id from test_request where tester_id='$tester_id' and user_id='$user_id2' and status=2)),$observation_id)";
+                                $stmt19 = "insert into results(asgn_test_id,observ_1) values((select ass_id from assigned_test where test_id in (select test_id from test where test_name='$test_name2' and specimen ='$test_specimen2') and testreq_id in (select tr_id from test_request where tester_id='$tester_id' and user_id='$user_id2' and status=4)),$observation_id)";
                                 $res_stmt19 = mysqli_query($conn,$stmt19);
                                 if ($res_stmt19)
                                 {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2020 at 03:32 AM
+-- Generation Time: Nov 18, 2020 at 08:48 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -33,6 +33,14 @@ CREATE TABLE `assigned_test` (
   `test_id` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `assigned_test`
+--
+
+INSERT INTO `assigned_test` (`ass_id`, `testreq_id`, `test_id`, `status`) VALUES
+(26, 59, 2, 1),
+(27, 59, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -82,6 +90,15 @@ CREATE TABLE `observation` (
   `observ_value` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `observation`
+--
+
+INSERT INTO `observation` (`obs_id`, `subtest_id`, `observ_value`) VALUES
+(44, NULL, '100 mg'),
+(49, 8, '100'),
+(50, 9, '120');
+
 -- --------------------------------------------------------
 
 --
@@ -104,6 +121,14 @@ CREATE TABLE `results` (
   `remarks` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `results`
+--
+
+INSERT INTO `results` (`res_id`, `asgn_test_id`, `observ_1`, `observ_2`, `observ_3`, `observ_4`, `observ_5`, `observ_6`, `observ_7`, `observ_8`, `observ_9`, `observ_10`, `remarks`) VALUES
+(18, 26, 44, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(21, 27, 49, 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -122,7 +147,7 @@ CREATE TABLE `subtests` (
 --
 
 INSERT INTO `subtests` (`sub_id`, `test_id`, `sub_name`, `ref_range`) VALUES
-(8, 3, 'WBC Count', '100-120'),
+(8, 3, 'WBC Count', '100-125'),
 (9, 3, 'HBC Count', '100-300');
 
 -- --------------------------------------------------------
@@ -169,6 +194,13 @@ CREATE TABLE `test_request` (
   `pay_stat` int(11) NOT NULL DEFAULT 0,
   `status` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `test_request`
+--
+
+INSERT INTO `test_request` (`tr_id`, `user_id`, `tester_id`, `pre_loc`, `doc_name`, `user_test`, `tr_date`, `pay_stat`, `status`) VALUES
+(59, 53, 4, 'http://192.168.43.159/moblab/UPLOADS/53_USER_PRESCRIPTION_3.png', 'Dr. zumala cv', NULL, '2020-11-11', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -283,7 +315,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assigned_test`
 --
 ALTER TABLE `assigned_test`
-  MODIFY `ass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -301,19 +333,19 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `observation`
 --
 ALTER TABLE `observation`
-  MODIFY `obs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `obs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `res_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `res_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `subtests`
 --
 ALTER TABLE `subtests`
-  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `test`
@@ -325,7 +357,7 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT for table `test_request`
 --
 ALTER TABLE `test_request`
-  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `users`

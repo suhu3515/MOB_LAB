@@ -117,7 +117,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="pending_requests_demo.php">
+                                        <a href="all_requests.php">
                                             Pending Requests
                                         </a>
                                     </li>
@@ -166,13 +166,8 @@
                                 </a>
                                 <ul class="nav nav-children">
                                     <li>
-                                        <a href="report_list_demo.php">
+                                        <a href="report_list.php">
                                             View Reports
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="pending_reports_demo.php">
-                                            Pending Reports
                                         </a>
                                     </li>
                                 </ul>

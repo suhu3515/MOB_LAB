@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Pending Reports | MOBLAB</title>
+    <title>Report List | MOBLAB</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -97,7 +97,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="pending_requests_demo.php">
+                                        <a href="all_requests.php">
                                             Pending Requests
                                         </a>
                                     </li>
@@ -145,14 +145,9 @@
                                     <span>Reports</span>
                                 </a>
                                 <ul class="nav nav-children">
-                                    <li>
-                                        <a href="report_list_demo.php">
-                                            View Reports
-                                        </a>
-                                    </li>
                                     <li class="nav nav-active">
-                                        <a href="pending_reports_demo.php">
-                                            Pending Reports
+                                        <a href="report_list.php">
+                                            View Reports
                                         </a>
                                     </li>
                                 </ul>
@@ -193,84 +188,76 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Pending Reports</h2>
+                <h2>Report List</h2>
 
             </header>
 
             <!-- start: page -->
+            <section class="panel">
+                <header class="panel-heading">
+                    <div class="panel-actions">
+                        <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                        <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                    </div>
 
+                    <h2 class="panel-title">Test Reports</h2>
+                </header>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-striped mb-none" id="tester_table">
+                        <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Date of Birth</th>
+                            <th>Tester</th>
+                            <th>Test Date</th>
+                            <th>View Report</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $server_name = "localhost";
+                        $user_name = "root";
+                        $password = "";
+                        $database = "moblab";
+
+                        $conn = new mysqli($server_name, $user_name, $password, $database);
+                        $tr_sel = "select tr_id,user_id,tester_id, tr_date from test_request where status=5 and tr_id IN (select testreq_id from assigned_test where ass_id in (select asgn_test_id from results))";
+                        $tr_res = $conn->query($tr_sel);
+                        while ($row = $tr_res->fetch_array())
+                        {
+                            $user_sel = "select user_name, dob from users where user_id = $row[1]";
+                            $user_res = $conn->query($user_sel);
+                            while ($user_row = $user_res->fetch_array())
+                            {
+                                echo "<tr>";
+                                echo "<td>$user_row[0]</td>";
+                                echo "<td>$user_row[1]</td>";
+                            }
+
+                            $tester_sel = "select user_name from users where user_id = '$row[2]'";
+                            $tester_res = $conn->query($tester_sel);
+                            while ($tester_row = $tester_res->fetch_array())
+                            {
+                                echo "<td>$tester_row[0]</td>";
+                            }
+
+                            echo "<td>$row[3]</td>";
+
+                            echo "<td><a href='report_details.php?tr_id=$row[0]'><button class='btn btn-primary'>VIEW</button> </a></td>";
+
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
             <!-- end: page -->
         </section>
     </div>
-
-    <aside id="sidebar-right" class="sidebar-right">
-        <div class="nano">
-            <div class="nano-content">
-                <a href="#" class="mobile-close visible-xs">
-                    Collapse <i class="fa fa-chevron-right"></i>
-                </a>
-
-                <div class="sidebar-right-wrapper">
-
-                    <div class="sidebar-widget widget-calendar">
-                        <h6>Upcoming Tasks</h6>
-                        <div data-plugin-datepicker data-plugin-skin="dark" ></div>
-
-                        <ul>
-                            <li>
-                                <time datetime="2016-04-19T00:00+00:00">04/19/2016</time>
-                                <span>Company Meeting</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-widget widget-friends">
-                        <h6>Friends</h6>
-                        <ul>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </aside>
-
 </section>
 
 <!-- Vendor -->

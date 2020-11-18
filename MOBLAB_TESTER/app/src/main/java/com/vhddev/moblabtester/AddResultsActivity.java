@@ -90,6 +90,7 @@ public class AddResultsActivity extends AppCompatActivity {
             protected String doInBackground(Void... voids) {
 
                 value = et_obs_value.getText().toString();
+                subtestName = subtestList.get(sub_position);
 
                 RequestHandler requestHandler = new RequestHandler();
 
