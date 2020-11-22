@@ -24,7 +24,7 @@ public class TestDetailsActivity extends AppCompatActivity {
     String test_name, test_spec,user_name,user_loc,user_dob;
     int user_id,sub_count,tester_id,pay,stat;
     TextView tv_username,tv_userdob,tv_userloc,tv_test_name,tv_test_spec,tv_test_pay,tv_test_status;
-    Button btn_add_result,btn_update_status;
+    Button btn_add_result,btn_update_status,btn_view_res;
     boolean isSubTestExists,isResultsAdded;
     Tester tester;
     SwipeRefreshLayout pullToRefresh;
@@ -68,6 +68,7 @@ public class TestDetailsActivity extends AppCompatActivity {
         tv_test_pay = findViewById(R.id.text_testpay_val);
         tv_test_status = findViewById(R.id.text_teststat_val);
         btn_update_status = findViewById(R.id.btn_update_stat);
+        btn_view_res = findViewById(R.id.btn_view_res);
 
         tv_username.setText(user_name);
         tv_userdob.setText(user_dob);
@@ -133,6 +134,15 @@ public class TestDetailsActivity extends AppCompatActivity {
             }
         });
 
+        btn_view_res.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent resultIntent = new Intent(TestDetailsActivity.this,ReportActivity.class);
+                startActivity(resultIntent);
+
+            }
+        });
     }
 
     private void refreshData()
@@ -202,6 +212,9 @@ public class TestDetailsActivity extends AppCompatActivity {
                                case 5:
 
                                    tv_test_status.setText("COMPLETED");
+                                   btn_add_result.setVisibility(View.GONE);
+                                   btn_view_res.setVisibility(View.VISIBLE);
+                                   btn_view_res.setEnabled(true);
                                    break;
 
                                default:

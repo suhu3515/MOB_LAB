@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UpdateStatusActivity"></activity>
+        <activity android:name=".ReportActivity"></activity>
+        <activity android:name=".UpdateStatusActivity" />
         <activity android:name=".AddTestResultsActivity" />
         <activity android:name=".AddResultsActivity" />
         <activity android:name=".TestDetailsActivity" />
