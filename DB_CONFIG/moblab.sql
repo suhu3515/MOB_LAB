@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2020 at 08:48 AM
+-- Generation Time: Nov 22, 2020 at 05:22 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -200,7 +200,8 @@ CREATE TABLE `test_request` (
 --
 
 INSERT INTO `test_request` (`tr_id`, `user_id`, `tester_id`, `pre_loc`, `doc_name`, `user_test`, `tr_date`, `pay_stat`, `status`) VALUES
-(59, 53, 4, 'http://192.168.43.159/moblab/UPLOADS/53_USER_PRESCRIPTION_3.png', 'Dr. zumala cv', NULL, '2020-11-11', 1, 5);
+(59, 53, 4, 'http://192.168.43.159/moblab/UPLOADS/53_USER_PRESCRIPTION_3.png', 'Dr. zumala cv', NULL, '2020-11-11', 1, 5),
+(61, 53, 26, NULL, 'SELF', NULL, '2020-11-19', 0, 5);
 
 -- --------------------------------------------------------
 
@@ -357,7 +358,7 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT for table `test_request`
 --
 ALTER TABLE `test_request`
-  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `users`

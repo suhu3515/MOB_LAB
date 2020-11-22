@@ -523,6 +523,7 @@ if (isset($_GET['apicall']))
             }
         break;
 
+
         default:
             $response['error'] = true;
             $response['message'] = 'Invalid operation Called';

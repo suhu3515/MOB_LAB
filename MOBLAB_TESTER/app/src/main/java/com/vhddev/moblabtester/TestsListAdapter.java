@@ -58,7 +58,9 @@ public class TestsListAdapter extends RecyclerView.Adapter<TestsListAdapter.Test
 
         private final Context context;
 
-        TextView textViewTestName, textViewTestSpecimen,textViewUserName, textViewUserDob;
+        TextView textViewTestName;
+        TextView textViewTestSpecimen;
+        TextView textViewUserName;
 
         public TestsViewHolder(View itemView)
         {

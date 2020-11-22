@@ -157,7 +157,7 @@
             android:id="@+id/txt_tests"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_tests"
+            android:text="TEST RESULTS"
             app:layout_constraintTop_toBottomOf="@id/img_view_tr"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="15dp"
@@ -187,13 +187,13 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:textColor="@android:color/white"
-            android:text="@string/view_tests_caption"
+            android:text="you can view the test \nresults here"
             android:textStyle="bold"
             android:textSize="20sp"
             android:textAllCaps="true"/>
 
         <Button
-            android:id="@+id/btn_viewtests"
+            android:id="@+id/btn_viewtestres"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txt_view"

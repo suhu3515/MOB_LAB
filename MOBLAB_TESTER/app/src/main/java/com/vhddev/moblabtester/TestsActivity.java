@@ -110,7 +110,6 @@ public class TestsActivity extends AppCompatActivity {
                 {
                     e.printStackTrace();
                 }
-
             }
         }
         UserDetails ud = new UserDetails();

@@ -15,6 +15,8 @@ public class URLs
     public static final String URL_UPLOAD_PRESCRIPTION = "http://192.168.43.159/moblab/upload.php";
     public static final String URL_GET_SPECIMEN = "http://192.168.43.159/moblab/get_specimen.php";
     public static final String URL_GET_TESTS = "http://192.168.43.159/moblab/get_tests.php";
+    public static final String URL_USER_RESULTS = "http://192.168.43.159/moblab/user_test_result_list.php";
+    public static final String URL_USER_RESULT = "http://192.168.43.159/moblab/user_test_result_details.php";
     public static final String URL_ADD_USER_TESTS = ROOT_URL + "add_user_test";
 
 
