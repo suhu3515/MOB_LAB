@@ -9,7 +9,7 @@ public class URLs
 
 
     public static final String URL_REGISTER = ROOT_URL + "signup";
-    public static final String URL_LOGIN = ROOT_URL + "login";
+    public static final String URL_LOGIN = ROOT_URL + "user_login";
     public static final String URL_ADD_LOCATION = ROOT_URL + "add_loc";
     public static final String URL_ADD_TEST_REQUEST = ROOT_URL + "book_test";
     public static final String URL_UPLOAD_PRESCRIPTION = "http://192.168.43.159/moblab/upload.php";
