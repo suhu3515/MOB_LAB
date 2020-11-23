@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2020 at 05:45 PM
+-- Generation Time: Nov 23, 2020 at 02:02 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -76,7 +76,8 @@ INSERT INTO `login` (`login_id`, `mobile`, `password`, `l_role`) VALUES
 (4, 9567105860, 'abcde', 'TESTER'),
 (26, 9895989598, '12345', 'TESTER'),
 (50, 9605567272, '123443', 'USER'),
-(53, 9633058949, '123321', 'USER');
+(53, 9633058949, '123321', 'USER'),
+(55, 9876543210, 'admin', 'ADMIN');
 
 -- --------------------------------------------------------
 
@@ -327,7 +328,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `observation`
