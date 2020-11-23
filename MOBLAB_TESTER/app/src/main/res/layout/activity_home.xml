@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <ImageView
+        android:id="@+id/home_shape1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/home_shape"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WELCOME,"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/home_shape1"
+        app:layout_constraintTop_toTopOf="@id/home_shape1"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/tester_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MOHAMMED ASLAM K"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcome"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"/>
+
+    <ImageView
+        android:id="@+id/shape_profile"
+        android:layout_width="170dp"
+        android:layout_height="100dp"
+        android:src="@drawable/home_shape1"
+        app:layout_constraintTop_toBottomOf="@id/home_shape1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"/>
+
+    <ImageView
+        android:id="@+id/shape_tasks"
+        android:layout_width="170dp"
+        android:layout_height="100dp"
+        android:src="@drawable/home_shape2"
+        app:layout_constraintTop_toBottomOf="@id/home_shape1"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"/>
+
+    <ImageView
+        android:id="@+id/profile_logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/profile_logo"
+        app:layout_constraintTop_toTopOf="@id/shape_profile"
+        app:layout_constraintStart_toStartOf="@id/shape_profile"
+        app:layout_constraintBottom_toBottomOf="@id/shape_profile"
+        android:layout_marginStart="5dp"/>
+
+    <TextView
+        android:id="@+id/profile_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PROFILE"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@id/profile_logo"
+        app:layout_constraintTop_toTopOf="@id/shape_profile"
+        app:layout_constraintBottom_toBottomOf="@id/shape_profile"/>
+
+    <ImageView
+        android:id="@+id/profile_taks"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/tasks"
+        app:layout_constraintTop_toTopOf="@id/shape_tasks"
+        app:layout_constraintStart_toStartOf="@id/shape_tasks"
+        app:layout_constraintBottom_toBottomOf="@id/shape_tasks"
+        android:layout_marginStart="5dp"/>
+
+    <TextView
+        android:id="@+id/task_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="assigned\ntasks"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@id/profile_taks"
+        app:layout_constraintTop_toTopOf="@id/shape_tasks"
+        app:layout_constraintBottom_toBottomOf="@id/shape_profile"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

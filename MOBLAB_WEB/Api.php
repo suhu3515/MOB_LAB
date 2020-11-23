@@ -565,8 +565,60 @@ if (isset($_GET['apicall']))
                     $stmt->close();
                 }
             }
+            else
+            {
+                $response['error'] = true;
+                $response['message'] = 'required parameters are not available';
+            }
+        break;
 
+        case "tester_login":
 
+            if (isTheseParametersAvailable(array('mobile','password'))) {
+                $mobile = $_POST['mobile'];
+                $password = $_POST['password'];
+                $stmt = $conn->prepare("SELECT * from login where l_role='TESTER' and mobile=? and password=?");
+                $stmt->bind_param("ss", $mobile, $password);
+                $stmt->execute();
+                $stmt->store_result();
+                if ($stmt->num_rows > 0) {
+                    $stmt1 = $conn->prepare("select user_id,user_name,dob,h_name,place,pin,mobile,email,location from users where mobile=?");
+                    $stmt1->bind_param("s", $mobile);
+                    $stmt1->execute();
+                    $stmt1->bind_result($user_id, $user_name, $dob, $h_name, $place, $pin, $mobile, $email, $location);
+                    $stmt1->fetch();
+
+                    $TESTER = array
+                    (
+                        'user_id' => $user_id,
+                        'user_name' => $user_name,
+                        'dob' => $dob,
+                        'h_name' => $h_name,
+                        'place' => $place,
+                        'pin' => $pin,
+                        'mobile' => $mobile,
+                        'email' => $email,
+                        'location' => $location
+                    );
+
+                    $response['error'] = false;
+                    $response['message'] = 'Succesfully logged in';
+                    $response['TESTER'] = $TESTER;
+                    $stmt1->close();
+                    $stmt->close();
+                }
+                else
+                {
+                    $response['error'] = true;
+                    $response['message'] = 'No tester found';
+                    $stmt->close();
+                }
+            }
+            else
+            {
+                $response['error'] = true;
+                $response['message'] = 'required parameters are not available';
+            }
         break;
 
 
