@@ -153,7 +153,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="profile_demo.php">
+                                <a href="profile.php">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     <span>Profile</span>
                                 </a>
@@ -194,77 +194,40 @@
 
             <!-- start: page -->
 
+            <section class="panel panel-featured-left panel-featured-tertiary">
+                <div class="panel-body">
+                    <div class="widget-summary">
+                        <div class="widget-summary-col">
+                            <div class="summary">
+                                <h4 class="title">Welcome</h4>
+                                <div class="info">
+                                    <strong class="amount">ADMINISTRATOR</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="subname">Mobile Number</label>
+                            <div class="col-md-6">
+                                <label class="col-md-3 control-label" for="subname">9876543210</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="refrange">Password</label>
+                            <a href="change_password.php"><button class="col-md-3 btn-primary btn">Change password</button></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
             <!-- end: page -->
         </section>
     </div>
 
-    <aside id="sidebar-right" class="sidebar-right">
-        <div class="nano">
-            <div class="nano-content">
-                <a href="#" class="mobile-close visible-xs">
-                    Collapse <i class="fa fa-chevron-right"></i>
-                </a>
-
-                <div class="sidebar-right-wrapper">
-
-                    <div class="sidebar-widget widget-calendar">
-                        <h6>Upcoming Tasks</h6>
-                        <div data-plugin-datepicker data-plugin-skin="dark" ></div>
-
-                        <ul>
-                            <li>
-                                <time datetime="2016-04-19T00:00+00:00">04/19/2016</time>
-                                <span>Company Meeting</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-widget widget-friends">
-                        <h6>Friends</h6>
-                        <ul>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </aside>
 
 </section>
 

@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Add Subtest | MOBLAB</title>
+    <title>Admin Profile | MOBLAB</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -49,7 +49,7 @@
     <header class="header">
         <div class="logo-container">
             <a href="homepage.php" class="logo">
-                <img src="assets/images/new_logo.png" alt="ABC LAB" />
+                <img src="assets/images/new_logo.png" alt="Porto Admin" />
             </a>
             <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
                 <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -114,7 +114,7 @@
                                             Tests
                                         </a>
                                     </li>
-                                    <li class="nav nav-active">
+                                    <li>
                                         <a href="subtests_list.php">
                                             SubTests
                                         </a>
@@ -188,7 +188,7 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Add Subtest</h2>
+                <h2>Admin Profile</h2>
 
             </header>
 
@@ -203,46 +203,29 @@
                                 <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
                             </div>
 
-                            <h2 class="panel-title">Add Subtest</h2>
+                            <h2 class="panel-title">Change Password</h2>
                         </header>
                         <form class="form-horizontal form-bordered" method="post">
                             <div class="panel-body">
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="testname">Test Name <span class="required">*</span></label>
-                                    <div class="col-md-6">
-                                        <?php
-                                        $server_name = "localhost";
-                                        $user_name = "root";
-                                        $password = "";
-                                        $database = "moblab";
 
-                                        $conn = new mysqli($server_name, $user_name, $password, $database);
-                                        $sel_tests = "select test_id, test_name from test";
-                                        $resu = $conn ->query($sel_tests);
-                                        ?>
-                                        <select class="form-control mb-md" name="testname" id="testname" required>
-                                            <option value="">Select Test</option>
-                                            <?php
-                                            while ( $row = $resu->fetch_array())
-                                            {
-                                                echo "<option value='$row[0]'>$row[1]</option>";
-                                            }
-                                            ?>
-                                        </select>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="curr_password">Current Password <span class="required">*</span></label>
+                                    <div class="col-md-6">
+                                        <input type="password" class="form-control" id="curr_password" name="curr_password" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="subname">Subtest Name <span class="required">*</span></label>
+                                    <label class="col-md-3 control-label" for="new_pass">New Password <span class="required">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" id="subname" name="subname" required>
+                                        <input type="password" class="form-control" id="new_pass" name="new_pass" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="refrange">Reference Range <span class="required">*</span></label>
+                                    <label class="col-md-3 control-label" for="confirm_pass">Confirm Password <span class="required">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" id="refrange" name="refrange" required>
+                                        <input type="password" class="form-control" id="confirm_pass" name="confirm_pass" required>
                                     </div>
                                 </div>
 
@@ -251,8 +234,7 @@
                             <footer class="panel-footer">
                                 <div class="row">
                                     <div class="col-sm-9 col-sm-offset-3">
-                                        <input class="btn btn-primary" type="submit" name="add_stest">
-                                        <button type="reset" class="btn btn-default">Reset</button>
+                                        <input class="btn btn-primary" type="submit" name="change_pass" value="Change Password">
                                     </div>
                                 </div>
                             </footer>
@@ -261,9 +243,11 @@
                 </div>
             </div>
 
+
             <!-- end: page -->
         </section>
     </div>
+
 
 </section>
 
@@ -319,23 +303,39 @@
 </html>
 
 <?php
-if (isset($_POST['add_stest']))
-{
-    $test_id = $_POST['testname'];
-    $subt_name = $_POST['subname'];
-    $subt_ref = $_POST['refrange'];
-    $new_stest = "INSERT INTO subtests (test_id,sub_name,ref_range) values ('$test_id','$subt_name','$subt_ref')";
-        $reg = mysqli_query($conn, $new_stest);
+$server_name = "localhost";
+$user_name = "root";
+$password = "";
+$database = "moblab";
 
-        if($reg)
+$conn = new mysqli($server_name, $user_name, $password, $database);
+if (isset($_POST['change_pass']))
+{
+    $old_pass = $_POST['curr_password'];
+    $new_pass = $_POST['new_pass'];
+    $confirm_pass = $_POST['confirm_pass'];
+
+    $sel_pass = "select * from login where l_role='ADMIN' and mobile='9876543210' and password='$old_pass'";
+    $res_pass = $conn->query($sel_pass);
+    if ($res_pass->num_rows>0)
+    {
+        if ($new_pass != $confirm_pass)
         {
-            echo "<script>alert('Subtest Added Successfully...')</script>";
-            echo "<script>window.location='subtests_list.php'</script>";
+            echo "<script>alert('passwords mismatch')</script>";
         }
         else
         {
-            echo "<script>alert('Error in Adding test')</script>";
-            $error_number = $conn->error;
-            echo $error_number;
+            $sql_new_pass = "update login set password='$new_pass' where l_role='ADMIN' and mobile='9876543210' and password='$old_pass'";
+            $res_change_pass = $conn->query($sql_new_pass);
+            if ($res_change_pass)
+            {
+                echo "<script>alert('password changed successfully...')</script>";
+                echo "<script>window.location='profile.php'</script>";
+            }
         }
+    }
+    else
+    {
+        echo "<script>alert('please check your current password')</script>";
+    }
 }

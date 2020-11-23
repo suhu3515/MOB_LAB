@@ -156,7 +156,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="profile_demo.php">
+                                <a href="profile.php">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     <span>Profile</span>
                                 </a>

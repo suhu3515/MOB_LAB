@@ -23,10 +23,10 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\Moblab" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\Moblab" />
     </key>
   </component>
@@ -159,6 +159,7 @@
       <workItem from="1606091490548" duration="1250000" />
       <workItem from="1606093042505" duration="221000" />
       <workItem from="1606093538894" duration="552000" />
+      <workItem from="1606111482725" duration="1739000" />
     </task>
     <servers />
   </component>
@@ -182,9 +183,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1605680210931" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1606010525950">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1606111727692">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1606010525950" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1606111727692" />
   </component>
 </project>
