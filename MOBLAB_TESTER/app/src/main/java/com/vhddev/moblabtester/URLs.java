@@ -16,4 +16,5 @@ public class URLs
     public static final String URL_CHECK_STATUS = ROOT_URL + "Api.php?apicall=check_status";
     public static final String URL_UPDATE_STATUS = ROOT_URL + "Api.php?apicall=update_status";
     public static final String URL_LOGIN = ROOT_URL + "Api.php?apicall=tester_login";
+    public static final String URL_CHANGE_PASSWORD = ROOT_URL + "Api.php?apicall=change_pass";
 }
