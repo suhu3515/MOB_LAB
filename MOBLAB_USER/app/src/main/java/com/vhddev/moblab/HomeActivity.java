@@ -61,26 +61,4 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.main, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id==R.id.logout)
-        {
-            SharedPrefManager.getInstance(getApplicationContext()).logout();
-        }
-
-        return super.onOptionsItemSelected(item);
-
-    }
 }

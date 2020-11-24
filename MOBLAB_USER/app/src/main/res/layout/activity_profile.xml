@@ -6,4 +6,189 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
+    <TextView
+        android:id="@+id/tv_uname_caps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USER NAME:"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"/>
+
+    <TextView
+        android:id="@+id/tv_uname_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USAMA BIN ABOOBACKER"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_uname_caps"
+        android:layout_marginTop="35dp"
+        android:textAllCaps="true"
+        android:layout_marginStart="49dp"/>
+
+    <TextView
+        android:id="@+id/tv_dob_caps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DATE OF BIRTH:"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_uname_caps"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"/>
+
+    <TextView
+        android:id="@+id/tv_dob_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1998-10-28"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/tv_uname_value"
+        app:layout_constraintStart_toEndOf="@id/tv_dob_caps"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="22dp"/>
+
+    <TextView
+        android:id="@+id/tv_mob_caps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MOBILE NUMBER:"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_dob_caps"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"/>
+
+    <TextView
+        android:id="@+id/tv_mob_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9633058949"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/tv_dob_value"
+        app:layout_constraintStart_toEndOf="@id/tv_mob_caps"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/tv_mail_caps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EMAIL ADDRESS:"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_mob_caps"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"/>
+
+    <TextView
+        android:id="@+id/tv_mail_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="suhu3515@gmail.com"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/tv_mob_value"
+        app:layout_constraintStart_toEndOf="@id/tv_mail_caps"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="13dp"/>
+
+    <TextView
+        android:id="@+id/tv_addr_caps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADDRESS:"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_mail_caps"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"/>
+
+    <TextView
+        android:id="@+id/tv_hname_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KALLINGAL HOUSE"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/tv_mail_value"
+        app:layout_constraintStart_toEndOf="@id/tv_addr_caps"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="70dp"/>
+
+    <TextView
+        android:id="@+id/tv_place_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EDAPPAL"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/tv_hname_value"
+        app:layout_constraintStart_toEndOf="@id/tv_addr_caps"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="70dp"/>
+
+    <TextView
+        android:id="@+id/tv_pin_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="679581"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/tv_place_value"
+        app:layout_constraintStart_toEndOf="@id/tv_addr_caps"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="70dp"/>
+
+    <Button
+        android:id="@+id/btn_change_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CHANGE PASSWORD"
+        app:layout_constraintTop_toBottomOf="@id/tv_pin_value"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@android:color/white"
+        android:background="@color/bg_green"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_logout"
+        app:layout_constraintTop_toBottomOf="@id/btn_change_pass"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@android:color/white"
+        android:background="#FF0000"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="40dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

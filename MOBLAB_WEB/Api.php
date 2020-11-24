@@ -621,6 +621,45 @@ if (isset($_GET['apicall']))
             }
         break;
 
+        case "change_pass":
+
+            if (isTheseParametersAvailable(array('mobile','role','pass','new_pass')))
+            {
+                $mobile = $_POST['mobile'];
+                $log_role = $_POST['role'];
+                $pass = $_POST['pass'];
+                $new_pass = $_POST['new_pass'];
+
+                $sel_password = "select * from login where mobile='$mobile' and l_role='$log_role' and password='$pass'";
+                $res_password = mysqli_query($conn,$sel_password);
+                if (mysqli_num_rows($res_password)>0)
+                {
+                    $sql_pass = "update login set password='$new_pass' where mobile='$mobile' and l_role='$log_role' and password='$pass'";
+                    $res_pass = mysqli_query($conn,$sql_pass);
+                    if($res_pass)
+                    {
+                        $response['error'] = false;
+                        $response['message'] = "Changed password successfully...";
+                    }
+                    else
+                    {
+                        $response['error'] = true;
+                        $response['message'] = "error occurred!";
+                    }
+                }
+                else
+                {
+                    $response['error'] = true;
+                    $response['message'] = "error occurred!";
+                }
+            }
+            else
+            {
+                $response['error'] = true;
+                $response['message'] = 'required parameters are not available';
+            }
+        break;
+
 
         default:
             $response['error'] = true;

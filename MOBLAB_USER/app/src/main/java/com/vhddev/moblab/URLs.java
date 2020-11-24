@@ -18,6 +18,6 @@ public class URLs
     public static final String URL_USER_RESULTS = "http://192.168.43.159/moblab/user_test_result_list.php";
     public static final String URL_USER_RESULT = "http://192.168.43.159/moblab/user_test_result_details.php";
     public static final String URL_ADD_USER_TESTS = ROOT_URL + "add_user_test";
-
+    public static final String URL_CHANGE_PASSWORD = ROOT_URL + "change_pass";
 
 }

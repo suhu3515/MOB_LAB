@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ChangePasswordActivity"></activity>
         <activity android:name=".ResultsActivity" />
         <activity android:name=".UploadPrescriptionActivity" />
         <activity android:name=".ProfileActivity" />
@@ -24,7 +25,7 @@
         <activity android:name=".BookRequestActivity" />
         <activity
             android:name=".ResultDetailsActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LocationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
