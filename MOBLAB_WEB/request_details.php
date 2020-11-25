@@ -90,19 +90,19 @@
                                     <i class="fa fa-columns" aria-hidden="true"></i>
                                     <span>Requests</span>
                                 </a>
-                                <ul class="nav nav-children ">
-                                    <li>
-                                        <a href="test_requests.php">
-                                            Test Requests
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="all_requests.php">
-                                            Pending Requests
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
+                            <ul class="nav nav-children ">
+                                <li>
+                                    <a href="test_requests.php">
+                                        Today's Requests
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="all_requests.php">
+                                        All Requests
+                                    </a>
+                                </li>
+                            </ul>
                             <li class="nav-parent">
                                 <a href="#">
                                     <i class="fa fa-copy" aria-hidden="true"></i>
@@ -159,7 +159,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="pages-signin.html">
+                                <a href="index.html#signin">
                                     <i class="fa fa-external-link" aria-hidden="true"></i>
                                     <span>Logout</span>
                                 </a>
@@ -315,7 +315,7 @@
                                 echo "<footer class='panel-footer'>";
                                 echo "<div class='row'>";
                                 echo "<div class='col-sm-9 col-sm-offset-3'>";
-                                echo "<a href='test_requests.php'><button class='btn btn-default' type='button'>Go back</button></a>";
+                                echo "<a href='all_requests.php'><button class='btn btn-default' type='button'>Go back</button></a>";
                                 echo "</div>";
                                 echo "</div>";
                                 echo "</footer>";

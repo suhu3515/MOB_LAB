@@ -91,14 +91,14 @@
                                     <span>Requests</span>
                                 </a>
                                 <ul class="nav nav-children ">
-                                    <li class="nav nav-active">
+                                    <li>
                                         <a href="test_requests.php">
-                                            Test Requests
+                                            Today's Requests
                                         </a>
                                     </li>
                                     <li>
                                         <a href="all_requests.php">
-                                            Pending Requests
+                                            All Requests
                                         </a>
                                     </li>
                                 </ul>
@@ -159,7 +159,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="pages-signin.html">
+                                <a href="index.html#signin">
                                     <i class="fa fa-external-link" aria-hidden="true"></i>
                                     <span>Logout</span>
                                 </a>

@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>All Requests | MOBLAB</title>
+    <title>Test Requests | MOBLAB</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -93,12 +93,12 @@
                                 <ul class="nav nav-children ">
                                     <li>
                                         <a href="test_requests.php">
-                                            Test Requests
+                                            Today's Requests
                                         </a>
                                     </li>
                                     <li class="nav nav-active">
                                         <a href="all_requests.php">
-                                            Pending Requests
+                                            All Requests
                                         </a>
                                     </li>
                                 </ul>
@@ -159,7 +159,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="pages-signin.html">
+                                <a href="index.html#signin">
                                     <i class="fa fa-external-link" aria-hidden="true"></i>
                                     <span>Logout</span>
                                 </a>
@@ -188,83 +188,107 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>All Requests</h2>
+                <h2>Test Requests</h2>
 
             </header>
 
             <!-- start: page -->
+            <section class="panel">
+                <header class="panel-heading">
+                    <div class="panel-actions">
+                        <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                        <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                    </div>
+
+                    <h2 class="panel-title">Test Requests</h2>
+                </header>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-striped mb-none" id="tester_table">
+                        <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Doctor Name</th>
+                            <th>Request Date</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                            <th>Details</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $server_name = "localhost";
+                        $user_name = "root";
+                        $password = "";
+                        $database = "moblab";
+
+                        $conn = new mysqli($server_name, $user_name, $password, $database);
+                        $tr_sel = "select tr_id, user_id, doc_name, tr_date, pay_stat,status from test_request";
+                        $res = $conn->query($tr_sel);
+                        while ($row = $res->fetch_array())
+                        {
+                            echo "<tr>";
+                            $usr_sel = "select user_name from users where user_id='$row[1]'";
+                            $usr_res = $conn->query($usr_sel);
+                            while ($usr_row = $usr_res->fetch_array())
+                            {
+                                echo "<td>$usr_row[0]</td>";
+                            }
+                            echo "<td>$row[2]</td>";
+                            echo "<td>$row[3]</td>";
+                            if ($row[4]==0)
+                            {
+                                echo "<td>Not paid</td>";
+                            }
+                            else
+                            {
+                                echo "<td>Paid</td>";
+                            }
+
+
+                            // 0 - Declined
+                            // 1 - Active
+                            // 2 - Tester Assigned
+                            // 3 - Sample Collected
+                            // 4 - Generating report
+                            // 5 - Completed
+                            switch ($row[5])
+                            {
+                                case 0:
+                                    echo "<td>Rejected</td>";
+                                    break;
+                                case 1:
+                                    echo "<td>Active</td>";
+                                    break;
+                                case 2:
+                                    echo "<td>Assigned Tester</td>";
+                                    break;
+                                case 3:
+                                    echo "<td>Sample Collected</td>";
+                                    break;
+                                case 4:
+                                    echo "<td>Generating Report</td>";
+                                    break;
+                                case 5:
+                                    echo "<td>Completed</td>";
+                                    break;
+                                default:
+                                    echo "<td>Error</td>";
+                                    break;
+                            }
+                            echo "<td><a href='request_details.php?tr_id=$row[0]'><button class='btn btn-primary'>Details</button></a></td>";
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
             <!-- end: page -->
         </section>
     </div>
-
-    <aside id="sidebar-right" class="sidebar-right">
-        <div class="nano">
-            <div class="nano-content">
-                <a href="#" class="mobile-close visible-xs">
-                    Collapse <i class="fa fa-chevron-right"></i>
-                </a>
-
-                <div class="sidebar-right-wrapper">
-
-                    <div class="sidebar-widget widget-calendar">
-                        <h6>Upcoming Tasks</h6>
-                        <div data-plugin-datepicker data-plugin-skin="dark" ></div>
-
-                        <ul>
-                            <li>
-                                <time datetime="2016-04-19T00:00+00:00">04/19/2016</time>
-                                <span>Company Meeting</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="sidebar-widget widget-friends">
-                        <h6>Friends</h6>
-                        <ul>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-online">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                            <li class="status-offline">
-                                <figure class="profile-picture">
-                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
-                                </figure>
-                                <div class="profile-info">
-                                    <span class="name">Joseph Doe Junior</span>
-                                    <span class="title">Hey, how are you?</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </aside>
-
 </section>
 
 <!-- Vendor -->
@@ -317,6 +341,4 @@
 
 </body>
 </html>
-</html>
-
 <?php
