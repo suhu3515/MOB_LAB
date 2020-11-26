@@ -159,6 +159,12 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="feedback.php">
+                                    <i class="fa fa-bookmark" aria-hidden="true"></i>
+                                    <span>Feedback</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="index.html#signin">
                                     <i class="fa fa-external-link" aria-hidden="true"></i>
                                     <span>Logout</span>

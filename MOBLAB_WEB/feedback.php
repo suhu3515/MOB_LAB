@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Admin Profile | MOBLAB</title>
+    <title>Feedback | MOBLAB</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -158,7 +158,7 @@
                                     <span>Profile</span>
                                 </a>
                             </li>
-                            <li>
+                            <li class="nav nav-active">
                                 <a href="feedback.php">
                                     <i class="fa fa-bookmark" aria-hidden="true"></i>
                                     <span>Feedback</span>
@@ -194,67 +194,76 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Admin Profile</h2>
+                <h2>Feedback</h2>
 
             </header>
 
             <!-- start: page -->
+            <section class="panel">
+                <header class="panel-heading">
+                    <div class="panel-actions">
+                        <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                        <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                    </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <section class="panel">
-                        <header class="panel-heading">
-                            <div class="panel-actions">
-                                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
-                                <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
-                            </div>
+                    <h2 class="panel-title">Feedback</h2>
+                </header>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-striped mb-none" id="tester_table">
+                        <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Tester Name</th>
+                            <th>Rating</th>
+                            <th>Feedback</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $server_name = "localhost";
+                        $user_name = "root";
+                        $password = "";
+                        $database = "moblab";
 
-                            <h2 class="panel-title">Change Password</h2>
-                        </header>
-                        <form class="form-horizontal form-bordered" method="post">
-                            <div class="panel-body">
+                        $conn = new mysqli($server_name, $user_name, $password, $database);
+                        $tr_sel = "select fdbk_id,tr_id,feedback,rating from feedback";
+                        $res = $conn->query($tr_sel);
+                        while ($row = $res->fetch_array())
+                        {
+                            echo "<tr>";
+                            $req_sel = "select user_id, tester_id from test_request where tr_id='$row[1]'";
+                            $req_res = $conn->query($req_sel);
+                            while ($req_row = $req_res->fetch_array())
+                            {
+                                $user_sel = "select user_name from users where user_id='$req_row[0]'";
+                                $user_res = $conn->query($user_sel);
+                                while ($user_row = $user_res->fetch_array())
+                                {
+                                    echo "<td>$user_row[0]</td>";
+                                }
 
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="curr_password">Current Password <span class="required">*</span></label>
-                                    <div class="col-md-6">
-                                        <input type="password" class="form-control" id="curr_password" name="curr_password" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="new_pass">New Password <span class="required">*</span></label>
-                                    <div class="col-md-6">
-                                        <input type="password" class="form-control" id="new_pass" name="new_pass" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="confirm_pass">Confirm Password <span class="required">*</span></label>
-                                    <div class="col-md-6">
-                                        <input type="password" class="form-control" id="confirm_pass" name="confirm_pass" required>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <footer class="panel-footer">
-                                <div class="row">
-                                    <div class="col-sm-9 col-sm-offset-3">
-                                        <input class="btn btn-primary" type="submit" name="change_pass" value="Change Password">
-                                    </div>
-                                </div>
-                            </footer>
-                        </form>
-                    </section>
+                                $tester_sel = "select user_name from users where user_id='$req_row[1]'";
+                                $tester_res = $conn->query($tester_sel);
+                                while ($tester_row = $tester_res->fetch_array())
+                                {
+                                    echo "<td>$tester_row[0]</td>";
+                                }
+                            }
+                            echo "<td>$row[3]</td>";
+                            echo "<td>$row[2]</td>";
+                        }
+                        ?>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-
-
+            </section>
             <!-- end: page -->
         </section>
     </div>
-
-
 </section>
 
 <!-- Vendor -->
@@ -307,41 +316,4 @@
 
 </body>
 </html>
-
 <?php
-$server_name = "localhost";
-$user_name = "root";
-$password = "";
-$database = "moblab";
-
-$conn = new mysqli($server_name, $user_name, $password, $database);
-if (isset($_POST['change_pass']))
-{
-    $old_pass = $_POST['curr_password'];
-    $new_pass = $_POST['new_pass'];
-    $confirm_pass = $_POST['confirm_pass'];
-
-    $sel_pass = "select * from login where l_role='ADMIN' and mobile='9876543210' and password='$old_pass'";
-    $res_pass = $conn->query($sel_pass);
-    if ($res_pass->num_rows>0)
-    {
-        if ($new_pass != $confirm_pass)
-        {
-            echo "<script>alert('passwords mismatch')</script>";
-        }
-        else
-        {
-            $sql_new_pass = "update login set password='$new_pass' where l_role='ADMIN' and mobile='9876543210' and password='$old_pass'";
-            $res_change_pass = $conn->query($sql_new_pass);
-            if ($res_change_pass)
-            {
-                echo "<script>alert('password changed successfully...')</script>";
-                echo "<script>window.location='profile.php'</script>";
-            }
-        }
-    }
-    else
-    {
-        echo "<script>alert('please check your current password')</script>";
-    }
-}
