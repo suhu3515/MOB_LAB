@@ -23,10 +23,10 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\Moblab" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\Moblab" />
     </key>
   </component>
@@ -165,6 +165,9 @@
       <workItem from="1606221250799" duration="723000" />
       <workItem from="1606252438444" duration="596000" />
       <workItem from="1606278066201" duration="1530000" />
+      <workItem from="1606350530197" duration="1409000" />
+      <workItem from="1606357627245" duration="600000" />
+      <workItem from="1606366992357" duration="143000" />
     </task>
     <servers />
   </component>

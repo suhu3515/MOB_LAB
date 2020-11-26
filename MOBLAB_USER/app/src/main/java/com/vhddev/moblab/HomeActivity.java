@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Button btn_tr,btn_res;
+    Button btn_tr,btn_res,btn_all_tr;
     TextView txt_profile, txt_username_profile;
 
     @Override
@@ -27,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
         txt_profile = findViewById(R.id.txt_complete);
         txt_username_profile = findViewById(R.id.txt_uname_prof);
         btn_res = findViewById(R.id.btn_viewtestres);
+        btn_all_tr = findViewById(R.id.btn_viewtr);
 
         User user = SharedPrefManager.getInstance(this).getUser();
 
@@ -60,5 +61,16 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+
+        btn_all_tr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent alltrintent = new Intent(HomeActivity.this,TestRequestsActivity.class);
+                startActivity(alltrintent);
+
+            }
+        });
+
     }
 }
