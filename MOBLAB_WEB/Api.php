@@ -660,6 +660,37 @@ if (isset($_GET['apicall']))
             }
         break;
 
+        case "user_feedback":
+
+            if (isTheseParametersAvailable(array('user_id','tester_name','doctor_name','tr_date','rating_star','feedback')))
+            {
+                $user_id5 = $_POST['user_id'];
+                $tester_name = $_POST['tester_name'];
+                $doctor_name1 = $_POST['doctor_name'];
+                $tr_date1 = $_POST['tr_date'];
+                $rating = $_POST['rating_star'];
+                $feedback = $_POST['feedback'];
+
+                $stmt22 = "insert into feedback(tr_id,feedback,rating) values ((select tr_id from test_request where user_id='$user_id5' and status=5 and tr_date='$tr_date1' and doc_name='$doctor_name1' and tester_id=(select user_id from users where user_name='$tester_name')),'$feedback','$rating')";
+                $res_stmt22 = mysqli_query($conn,$stmt22);
+                if ($res_stmt22 == true)
+                {
+                    $response['error'] = false;
+                    $response['message'] = "Thank you for your feedback!";
+                }
+                else
+                {
+                    $response['error'] = true;
+                    $response['message'] = "Something went wrong!";
+                }
+            }
+            else
+            {
+                $response['error'] = true;
+                $response['message'] = 'required parameters are not available';
+            }
+
+        break;
 
         default:
             $response['error'] = true;

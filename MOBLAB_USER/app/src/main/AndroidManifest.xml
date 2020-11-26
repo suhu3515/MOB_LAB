@@ -16,7 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".FeedbackActivity"></activity>
+        <activity android:name=".ThankYouActivity"></activity>
+        <activity android:name=".FeedbackActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".RequestDetailsActivity" />
         <activity android:name=".TestRequestsActivity" />
         <activity android:name=".ChangePasswordActivity" />

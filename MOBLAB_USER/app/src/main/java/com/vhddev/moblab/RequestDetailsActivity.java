@@ -16,6 +16,7 @@ public class RequestDetailsActivity extends AppCompatActivity {
     Button btn_add_feedback, btn_call,btn_resubmit;
     String doc_name,tr_date,pay_stat,status,tester_name,tester_mob;
     long mob;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,8 @@ public class RequestDetailsActivity extends AppCompatActivity {
         btn_add_feedback = findViewById(R.id.btn_add_feedback);
         btn_call = findViewById(R.id.btn_call_tester);
         btn_resubmit = findViewById(R.id.btn_resubmit);
+
+        user = SharedPrefManager.getInstance(this).getUser();
 
         doc_name = getIntent().getExtras().getString("doc_name");
         tr_date = getIntent().getExtras().getString("request_date");
@@ -97,6 +100,10 @@ public class RequestDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent feedbackIntent = new Intent(RequestDetailsActivity.this,FeedbackActivity.class);
+                feedbackIntent.putExtra("user_id", user.getUid());
+                feedbackIntent.putExtra("tester_name", tester_name);
+                feedbackIntent.putExtra("doc_name", doc_name);
+                feedbackIntent.putExtra("tr_date", tr_date);
                 startActivity(feedbackIntent);
                 finish();
 
