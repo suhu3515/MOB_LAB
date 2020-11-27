@@ -308,7 +308,7 @@ if (isset($_GET['apicall']))
                         $response['error'] = true;
                 }
 
-                $stmt11 = "select * from results where asgn_test_id in (select ass_id from assigned_test where test_id in (select test_id from test where test_name='$tname' and specimen='$specimen') and (select tr_id from test_request where tester_id='$tester' and user_id='$user_id1' and status=4))";
+                $stmt11 = "select * from results where asgn_test_id in (select ass_id from assigned_test where test_id in (select test_id from test where test_name='$tname' and specimen='$specimen') and testreq_id in (select tr_id from test_request where tester_id='$tester' and user_id='$user_id1' and status=4))";
                 $res_stmt11 = mysqli_query($conn, $stmt11);
                 if ($res_stmt11)
                 {
@@ -414,7 +414,7 @@ if (isset($_GET['apicall']))
             $user_id2 = $_POST['user_id'];
             $test_value = $_POST['t_value'];
 
-            $stmt16 = "select * from results where asgn_test_id in (select ass_id from assigned_test where test_id in (select test_id from test where test_name='$test_name2' and specimen='$test_specimen2') and (select tr_id from test_request where tester_id='$tester_id' and user_id='$user_id2' and status=4))";
+            $stmt16 = "select * from results where asgn_test_id in (select ass_id from assigned_test where test_id in (select test_id from test where test_name='$test_name2' and specimen='$test_specimen2') and testreq_id in (select tr_id from test_request where tester_id='$tester_id' and user_id='$user_id2' and status=4))";
             $res_stmt16 = mysqli_query($conn,$stmt16);
             if ($res_stmt16)
             {

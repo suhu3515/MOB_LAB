@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2020 at 02:02 AM
+-- Generation Time: Nov 27, 2020 at 03:19 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -52,8 +52,16 @@ CREATE TABLE `feedback` (
   `fdbk_id` int(11) NOT NULL,
   `tr_id` int(11) NOT NULL,
   `feedback` varchar(50) DEFAULT NULL,
-  `rating` int(11) NOT NULL
+  `rating` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`fdbk_id`, `tr_id`, `feedback`, `rating`) VALUES
+(6, 59, 'Very good service', 3),
+(7, 59, 'not bad', 4);
 
 -- --------------------------------------------------------
 
@@ -73,11 +81,12 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`login_id`, `mobile`, `password`, `l_role`) VALUES
-(4, 9567105860, 'abcde', 'TESTER'),
+(4, 9567105860, 'qwerty', 'TESTER'),
 (26, 9895989598, '12345', 'TESTER'),
 (50, 9605567272, '123443', 'USER'),
 (53, 9633058949, '123321', 'USER'),
-(55, 9876543210, 'admin', 'ADMIN');
+(55, 9876543210, 'admin', 'ADMIN'),
+(58, 7736918949, '121212', 'USER');
 
 -- --------------------------------------------------------
 
@@ -96,9 +105,12 @@ CREATE TABLE `observation` (
 --
 
 INSERT INTO `observation` (`obs_id`, `subtest_id`, `observ_value`) VALUES
-(44, NULL, '100 mg'),
-(49, 8, '100'),
-(50, 9, '120');
+(44, NULL, '100g'),
+(49, 8, '5 billion'),
+(50, 9, '4.5 trillion'),
+(62, NULL, '5 micromolar/L'),
+(63, 12, '90 mg/dL'),
+(64, 13, '110 mg/dL');
 
 -- --------------------------------------------------------
 
@@ -140,7 +152,7 @@ CREATE TABLE `subtests` (
   `sub_id` int(11) NOT NULL,
   `test_id` int(11) NOT NULL,
   `sub_name` varchar(35) NOT NULL,
-  `ref_range` varchar(25) DEFAULT NULL
+  `ref_range` varchar(75) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -148,8 +160,10 @@ CREATE TABLE `subtests` (
 --
 
 INSERT INTO `subtests` (`sub_id`, `test_id`, `sub_name`, `ref_range`) VALUES
-(8, 3, 'WBC Count', '100-125'),
-(9, 3, 'HBC Count', '100-300');
+(8, 3, 'WBC Count', '3.4-9.6 billion cells/L'),
+(9, 3, 'RBC Count', '4.35-5.65 trillion cells/L'),
+(12, 12, 'Sugar - Fasting', '> 100 mg/dL'),
+(13, 12, 'Sugar - Non Fasting', '> 140 mg/dL');
 
 -- --------------------------------------------------------
 
@@ -172,11 +186,11 @@ CREATE TABLE `test` (
 --
 
 INSERT INTO `test` (`test_id`, `test_name`, `specimen`, `rate`, `ref_range`, `est_time`, `instr`) VALUES
-(2, 'Heamoglobin - Hb', 'BLOOD', 100, '100-120', '1 Hour', 'jdskl vfsdznvop:AJBC;oASNDV;osDBvn;OSSnasjbdgsv\r\n\r\ndsf\r\ndsfd\r\nsf\r\nsd\r\nfsd\r\nf\r\ndsf\r\nsd\r\nf\r\nsd\r\nfsd\r\nf\r\nsdf\r\nds\r\nfds'),
+(2, 'Heamoglobin - Hb', 'BLOOD', 30, '138 to 172 g/L', '1 Hour', ''),
 (3, 'Total Count', 'BLOOD', 150, '', '1 Hour 15 Minutes', 'fghdsaiokxksd[pfvjkadsop'),
-(4, 'Heamoglobin - Hg', 'BLOOD', 200, NULL, '30 mins', NULL),
-(9, 'WBC COUNT', 'BLOOD', 200, '150-200', '1 Hour', ''),
-(10, 'Sugar ', 'URINE', 200, '', '1 Hour 15 Minutes', '');
+(11, 'Bile Salt', 'URINE', 40, '<10 micromolar/L', '2 Hours', ''),
+(12, 'Sugar Level', 'URINE', 370, '', '3 Hours', ''),
+(13, 'Platelet Count', 'BLOOD', 80, '150 - 400 x10^9/L', '4 Hours', '');
 
 -- --------------------------------------------------------
 
@@ -201,7 +215,8 @@ CREATE TABLE `test_request` (
 --
 
 INSERT INTO `test_request` (`tr_id`, `user_id`, `tester_id`, `pre_loc`, `doc_name`, `user_test`, `tr_date`, `pay_stat`, `status`) VALUES
-(59, 53, 4, 'http://192.168.43.159/moblab/UPLOADS/53_USER_PRESCRIPTION_3.png', 'Dr. zumala cv', NULL, '2020-11-11', 1, 5);
+(59, 53, 4, 'http://192.168.43.159/moblab/UPLOADS/53_USER_PRESCRIPTION_3.png', 'Dr. zumala cv', NULL, '2020-11-11', 1, 5),
+(66, 57, 4, 'http://192.168.43.159/moblab/UPLOADS/57_USER_PRESCRIPTION_3.png', 'dr. anas', NULL, '2020-11-27', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -227,10 +242,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `dob`, `h_name`, `place`, `pin`, `mobile`, `email`, `location`, `status`) VALUES
-(4, 'aslam k', '1998-07-17', 'kallingal house', 'edappal', 679590, 9567105860, 'aslamkedpl12@gmail.com', NULL, 1),
+(4, 'aslam k', '1998-07-17', 'kallingal house', 'edappal', 679590, 9567105860, 'aslam@gmail.com', NULL, 1),
 (26, 'ashwini m', '1995-01-10', 'Valathel house', 'mavoor', 679581, 9895989598, 'ashwiniach9020@gmail.com', NULL, 1),
 (50, 'mujahid', '1998-12-01', 'karuthankattil', 'niramaruthur', 676109, 9605567272, 'mujahid@gmail.com', 'https://maps.google.com/maps?q=10.7401914,75.97461624', 1),
-(53, 'Suhail Ak', '1998-10-28', 'valathel', 'maranchery', 679581, 9633058949, 'suhu3515@gmail.com', 'https://maps.google.com/maps?q=10.73999162,75.97491232', 1);
+(53, 'Suhail Ak', '1998-10-28', 'valathel', 'maranchery', 679581, 9633058949, 'suhu3515@gmail.com', 'https://maps.google.com/maps?q=10.73999162,75.97491232', 1),
+(57, 'shahana t', '2000-06-03', 'thazhath', 'maranchery', 679581, 7736918949, 'shahna@gmail.com', 'https://maps.google.com/maps?q=10.7401914,75.97461624', 1);
 
 --
 -- Indexes for dumped tables
@@ -316,55 +332,55 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assigned_test`
 --
 ALTER TABLE `assigned_test`
-  MODIFY `ass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `ass_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `fdbk_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `fdbk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `observation`
 --
 ALTER TABLE `observation`
-  MODIFY `obs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `obs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `res_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `res_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `subtests`
 --
 ALTER TABLE `subtests`
-  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `test`
 --
 ALTER TABLE `test`
-  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `test_request`
 --
 ALTER TABLE `test_request`
-  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `tr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- Constraints for dumped tables

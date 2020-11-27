@@ -53,8 +53,6 @@ public class AddTestsActivity extends AppCompatActivity{
         setTitle("Add Tests");
         getSpecimen();
 
-        sb = new StringBuilder();
-
         button_add_tests = findViewById(R.id.btn_addTest);
         button_submit_tests = findViewById(R.id.btn_submitTest);
         specimen = findViewById(R.id.spinner_specimen);
@@ -77,8 +75,8 @@ public class AddTestsActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                //submit_tests();
                 tests = sb.toString();
+                submit_tests();
                 Toast.makeText(AddTestsActivity.this, tests, Toast.LENGTH_SHORT).show();
             }
         });
@@ -266,14 +264,16 @@ public class AddTestsActivity extends AppCompatActivity{
 
     private void add_user_tests()
     {
-        sb.append(test_name).append(" - ").append(specimen_name).append("\n");
-        specimen_list.clear();
-        test_list.clear();
+        test_name = test.getSelectedItem().toString();
+        specimen_name = specimen.getSelectedItem().toString();
+        sb.append("==>").append(test_name).append(" - ").append(specimen_name).append("\n");
+        //specimen_list.clear();
+        //test_list.clear();
         Toast.makeText(AddTestsActivity.this, "Added tests...", Toast.LENGTH_SHORT).show();
-        finish();
+        /*finish();
         overridePendingTransition(0, 0);
         startActivity(getIntent());
-        overridePendingTransition(0, 0);
+        overridePendingTransition(0, 0);*/
     }
 
 }

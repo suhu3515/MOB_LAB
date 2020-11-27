@@ -87,16 +87,16 @@ public class TestDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (user_loc.isEmpty())
-                {
-                    Toast.makeText(TestDetailsActivity.this, "User didn't set the location", Toast.LENGTH_LONG).show();
-                }
-                else
+                if (user_loc!=null)
                 {
                     Uri uri_loc = Uri.parse(user_loc);
                     Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri_loc);
                     mapIntent.setPackage("com.google.android.apps.maps");
                     startActivity(mapIntent);
+                }
+                else
+                {
+                    Toast.makeText(TestDetailsActivity.this, "User didn't set the location", Toast.LENGTH_LONG).show();
                 }
             }
         });

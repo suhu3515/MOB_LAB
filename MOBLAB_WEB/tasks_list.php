@@ -30,15 +30,13 @@ while($row_assgn = mysqli_fetch_array($res_assgn))
         while ($row_usr = mysqli_fetch_array($res_usr))
         {
 
-	    $temp['userid'] = $row_tr[0];
+    	    $temp['userid'] = $row_tr[0];
             $temp['username'] = $row_usr[0];
             $temp['userdob'] = $row_usr[1];
             $temp['userloc'] = $row_usr[2];
 
-            array_push($users,$temp);
-
         }
     }
 }
-
+array_push($users,$temp);
 echo json_encode($users);

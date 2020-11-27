@@ -210,11 +210,32 @@
 
                     $conn = new mysqli($server_name, $user_name, $password, $database);
 
+                    $today_date = date('Y-m-d');
+                    $total_price = 0;
+
                     $sel_user_count = "select count(*) from login where l_role='USER'";
                     $res_user_count = $conn->query($sel_user_count);
                     while ($row = $res_user_count->fetch_row())
                     {
                         $user_count = $row[0];
+                    }
+                    $sel_req_count = "select count(*) from test_request";
+                    $res_req_count = $conn->query($sel_req_count);
+                    while ($row_req = $res_req_count->fetch_array())
+                    {
+                        $req_count = $row_req[0];
+                    }
+                    $sel_today_req = "select count(*) from test_request where tr_date='$today_date'";
+                    $res_today_req = $conn->query($sel_today_req);
+                    while ($row_today = $res_today_req->fetch_array())
+                    {
+                        $today_req = $row_today[0];
+                    }
+                    $sel_price = "select rate from test where test_id in(select test_id from assigned_test where testreq_id in (select tr_id from test_request where status=5))";
+                    $res_price = $conn->query($sel_price);
+                    while ($row_price = $res_price->fetch_array())
+                    {
+                        $total_price = $total_price + $row_price[0];
                     }
                     ?>
 					<div class="row">
@@ -233,7 +254,9 @@
 													<div class="summary">
 														<h4 class="title">Total Revenue</h4>
 														<div class="info">
-															<strong class="amount">₹ 20,390.00</strong>
+                                                            <?php
+                                                                echo "<strong class='amount'>₹ $total_price</strong>";
+                                                            ?>
 														</div>
 													</div>
 												</div>
@@ -252,9 +275,11 @@
 												</div>
 												<div class="widget-summary-col">
 													<div class="summary">
-														<h4 class="title">Today's Collection</h4>
+														<h4 class="title">Today's Requests</h4>
 														<div class="info">
-															<strong class="amount">12</strong>
+                                                            <?php
+                                                                echo "<strong class='amount'>$today_req</strong>";
+                                                            ?>
 														</div>
 													</div>
 												</div>
@@ -277,7 +302,9 @@
 													<div class="summary">
 														<h4 class="title">Test Requests</h4>
 														<div class="info">
-															<strong class="amount">5</strong>
+                                                            <?php
+                                                                echo "<strong class='amount'>$req_count</strong>";
+                                                            ?>
 														</div>
 													</div>
 												</div>
